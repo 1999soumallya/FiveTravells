@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { UserLoginReducer, UserRegisterReducer } from '../Reducer/UserReducer'
 
-const userInfoFromLocalStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : []
+const userInfoFromLocalStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
 const reducer = combineReducers({
     userRegister: UserRegisterReducer,
@@ -11,7 +11,7 @@ const reducer = combineReducers({
 })
 
 const intialState = {
-    userLogin: userInfoFromLocalStorage
+    userLogin: { userInfo: userInfoFromLocalStorage }
 }
 
 const middleware = [thunk]

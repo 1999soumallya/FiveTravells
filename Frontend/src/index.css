@@ -1,5 +1,16 @@
 body {
     font-family: "Poppins", sans-serif !important;
     margin: 0;
-    background: #7474b5 !important;
+    /* background: #7474b5 !important; */
+}
+
+.input-calendar .input-calendar-field,
+.PhoneInputInput {
+    height: 34px !important;
+    border-radius: 0px !important;
+    width: 238px !important;
+}
+
+.admin_body{
+    min-height: 65vh;
 }
