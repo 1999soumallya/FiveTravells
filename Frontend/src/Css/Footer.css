@@ -1,5 +1,4 @@
 .footer_style {
-    font-family: 'Open Sans', arial;
     font-size: 85%;
     font-weight: normal;
     color: #FFF;
@@ -16,7 +15,6 @@ a.footer_style:link {
 }
 
 .footer_head {
-    font-family: 'Open Sans', arial;
     font-size: 70%;
     color: #333;
     margin-right: 2pt;

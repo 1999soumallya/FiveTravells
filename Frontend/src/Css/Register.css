@@ -3,7 +3,7 @@
     height: 90vh;
 }
 
-.brand img,
+
 .brand img {
     height: 5rem;
 }
@@ -40,10 +40,6 @@
 .RegisterForm p,
 .LoginForm p {
     color: #bf1650;
-}
-
-.RegisterForm p,
-.LoginForm p {
     margin: 0 !important;
     padding: 0 !important;
     font-size: 12px;
