@@ -10,15 +10,17 @@ a.nav_item {
     border: none !important;
     font-size: 13px;
 }
-.navbar-expand .navbar-collapse {
+
+.userNavBar .navbar-collapse {
     max-width: 56%;
 }
+
 .menu_head {
-    /* font-family: 'Open Sans', arial; */
     font-size: 13px;
     color: #333;
     margin-right: 2pt;
 }
+
 ul.social_item {
     display: flex;
     list-style: none;
@@ -26,12 +28,14 @@ ul.social_item {
     margin: 0;
     gap: 10px;
 }
+
 ul.social_item a {
     padding: 0 10px;
     position: relative;
     line-height: 1;
     display: inline-block;
 }
+
 ul.social_item a::after {
     content: "";
     height: 100%;
@@ -41,20 +45,24 @@ ul.social_item a::after {
     top: 0;
     background-color: #072436;
 }
+
 ul.social_item li:last-child a::after {
     display: none;
 }
-.social_listing span{
+
+.social_listing span {
     color: #333 !important;
-        text-decoration: none !important;
-        border: none !important;
-        font-size: 13px;
+    text-decoration: none !important;
+    border: none !important;
+    font-size: 13px;
 }
+
 .enquiry_tag {
     font-size: 14px;
     display: block;
     text-align: right;
 }
+
 .nav_listing {
     display: flex;
     list-style: none;

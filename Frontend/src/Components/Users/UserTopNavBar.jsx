@@ -7,9 +7,9 @@ import "../../Css/Header.css"
 export default function UserTopNavBar() {
     return (
         <>
-            <Navbar>
+            <Navbar className='userNavBar'>
                 <Container>
-                    <Navbar.Brand><Link> <Image src={Logo} alt='Logo' /> </Link></Navbar.Brand>
+                    <Navbar.Brand><Link> <Image src={Logo} alt='Logo' height={"50px"} /> </Link></Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Row>

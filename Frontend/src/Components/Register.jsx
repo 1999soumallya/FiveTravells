@@ -32,7 +32,7 @@ export default function Register() {
             toast.error(error, { theme: 'dark', position: 'bottom-right', draggable: true, pauseOnHover: true })
         }
         if (userInfo) {
-            navigate('/')
+            navigate('/admin')
         }
 
     }, [error, navigate, userInfo])

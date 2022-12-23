@@ -1,7 +1,6 @@
 body {
     font-family: "Poppins", sans-serif !important;
     margin: 0;
-    /* background: #7474b5 !important; */
 }
 
 .input-calendar .input-calendar-field,
@@ -11,6 +10,12 @@ body {
     width: 238px !important;
 }
 
-.admin_body{
-    min-height: 65vh;
+.user_body {
+    min-height: 76vh;
+}
+
+footer {
+    margin-left: 260px;
+    background-color: #f7faff;
+    transition: margin-left .6s ease-out;
 }

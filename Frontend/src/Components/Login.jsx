@@ -27,7 +27,7 @@ export default function Login() {
         }
         if (userInfo) {
             if (userInfo.userType === 'user') {
-                navigate('/')
+                navigate('/admin')
             }
         }
 
