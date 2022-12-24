@@ -4,29 +4,29 @@ const bcryptjs = require('bcryptjs')
 const CommonSchema = mongoose.Schema({
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     username: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     name: {
         type: String,
-        require: true
+        required: true
     },
     phoneNo: {
         type: String,
-        require: true
+        required: true
     },
     dob: {
         type: String,
-        require: true
+        required: true
     },
     userType: {
         type: String,
