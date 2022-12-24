@@ -1,73 +1,119 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { UserLogout } from '../../Redux/Action/UserAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faEnvelope, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faArrowRightFromBracket, faGear, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 export default function AdminTopNavbar() {
+    const [name, setname] = useState("")
+
+    let count = 0
+
+    const userLogin = useSelector((state) => state.userLogin)
+
+    const { success, userInfo } = userLogin
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (userInfo) {
+            setname(userInfo.name)
+            if (success) {
+                if (count < 1) {                    
+                    toast.success(`${userInfo.name} Login Success`, { theme: 'dark', position: 'top-center', draggable: true, pauseOnHover: true })
+                    count++
+                    return
+                }
+            }
+        } else {
+            navigate('/login')
+        }
+
+    }, [count, navigate, success, userInfo])
+
+    const logoutHandaler = () => {
+        dispatch(UserLogout())
+    }
+
+
     return (
         <>
             <div id="main">
-                <nav class="navbar navbar-header navbar-expand navbar-light">
-                    <Link class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></Link>
-                    <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                <nav className="navbar navbar-header navbar-expand navbar-light">
+                    <Link className="sidebar-toggler" href="#"><span className="navbar-toggler-icon"></span></Link>
+                    <button className="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
-                            <li class="dropdown nav-icon">
-                                <Link href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                    <div class="d-lg-inline-block">
-                                        <i data-feather="bell"></i>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                            <li className="dropdown nav-icon">
+                                <Link href="#" data-bs-toggle="dropdown" className="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                    <div className="d-lg-inline-block">
+                                        <FontAwesomeIcon icon={faBell} />
                                     </div>
                                 </Link>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-large">
-                                    <h6 class='py-2 px-4'>Notifications</h6>
-                                    <ul class="list-group rounded-none">
-                                        <li class="list-group-item border-0 align-items-start">
-                                            <div class="avatar bg-success me-3">
-                                                <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
+                                <div className="dropdown-menu dropdown-menu-end dropdown-menu-large">
+                                    <h6 className='py-2 px-4'>Notifications</h6>
+                                    <ul className="list-group rounded-none">
+                                        <li className="list-group-item border-0 align-items-start">
+                                            <div className="avatar bg-success me-3">
+                                                <span className="avatar-content"><FontAwesomeIcon icon={faShoppingCart} /></span>
                                             </div>
                                             <div>
-                                                <h6 class='text-bold'>New Order</h6>
-                                                <p class='text-xs'> An order made by Ahmad Saugi for product Samsung Galaxy S69 </p>
+                                                <h6 className='text-bold'>New Order</h6>
+                                                <p className='text-xs'> An order made by Ahmad Saugi for product Samsung Galaxy S69 </p>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li class="dropdown nav-icon me-2">
-                                <Link href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                    <div class="d-lg-inline-block">
-                                        <i data-feather="mail"></i>
+                            <li className="dropdown nav-icon">
+                                <Link href="#" data-bs-toggle="dropdown" className="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                    <div className="d-lg-inline-block">
+                                        <FontAwesomeIcon icon={faEnvelope} />
                                     </div>
                                 </Link>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <Link class="dropdown-item" href="#"><i data-feather="user"></i> Account</Link>
-                                    <Link class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</Link>
-                                    <Link class="dropdown-item" href="#"><i data-feather="settings"></i>
-                                        Settings</Link>
-                                    <div class="dropdown-divider"></div>
-                                    <Link class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</Link>
+                                <div className="dropdown-menu dropdown-menu-end dropdown-menu-large">
+                                    <h6 className='py-2 px-4'>Mail Box</h6>
+                                    <ul className="list-group rounded-none">
+                                        <li className="list-group-item border-0 align-items-start">
+                                            <div className="avatar bg-success me-3">
+                                                <span className="avatar-content"><FontAwesomeIcon icon={faShoppingCart} /></span>
+                                            </div>
+                                            <div>
+                                                <h6 className='text-bold'>New Order</h6>
+                                                <p className='text-xs'> An order made by Ahmad Saugi for product Samsung Galaxy S69 </p>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </li>
-                            <li class="dropdown">
-                                <Link href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                    <div class="avatar me-1">
-                                        <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="" />
+                            <li className="dropdown">
+                                <Link href="#" data-bs-toggle="dropdown" className="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                    <div className="avatar me-1">
+                                        <img src="assets/images/avatar/avatar-s-1.png" alt="" srcSet="" />
                                     </div>
-                                    <div class="d-none d-md-block
-                                        d-lg-inline-block">Hi, Saugi</div>
+                                    <div className="d-none d-md-block
+                                        d-lg-inline-block">Hi, {name}</div>
                                 </Link>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <Link class="dropdown-item" href="#"><i data-feather="user"></i> Account</Link>
-                                    <Link class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</Link>
-                                    <Link class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</Link>
-                                    <div class="dropdown-divider"></div>
-                                    <Link class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</Link>
+                                <div className="dropdown-menu dropdown-menu-end gap-2">
+                                    <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faUser} /><span className='ms-2'> Account </span></Link>
+                                    <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faMessage} /><span className='ms-2'>Messages</span></Link>
+                                    <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faGear} /><span className='ms-2'>Settings</span></Link>
+                                    <div className="dropdown-divider"></div>
+                                    <button className="dropdown-item" onClick={logoutHandaler}><FontAwesomeIcon icon={faArrowRightFromBracket} color="red" /><span className='ms-2'>Logout</span></button>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
+            <ToastContainer />
         </>
     )
 }

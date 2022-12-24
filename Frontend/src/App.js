@@ -8,13 +8,18 @@ import SearchContainer from './Components/Users/SearchContainer';
 import AdminSideNavbar from './Components/Admin/AdminSideNavbar';
 import AdminTopNavbar from './Components/Admin/AdminTopNavbar';
 import AdminFooter from './Components/Admin/AdminFooter';
+import AdminDashboard from './Components/Admin/AdminDashboard'
+import AdminFileUpload from './Components/Admin/AdminFileUpload'
+import AdminAddSubAdmin from './Components/Admin/AdminAddSubAdmin'
 
 function App() {
   return (
     <>
       <Routes>
         <Route path='/' element={[<><UserTopNavBar /><div className='user_body'><UserTypeSelection /><SearchContainer /></div><UserFooter /></>]} />
-        <Route path='/admin' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='user_body'></div><AdminFooter /> </>]} />
+        <Route path='/admin' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminDashboard /></div><AdminFooter /> </>]} />
+        <Route path='/admin/fileupload' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminFileUpload /></div><AdminFooter /> </>]} />
+        <Route path='/admin/addsubadmin' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminAddSubAdmin /></div><AdminFooter /> </>]} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
