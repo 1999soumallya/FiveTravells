@@ -33,7 +33,7 @@ const Fileuploadschima = mongoose.Schema({
         type: Number,
         required: true
     },
-    SEATS_AVALABLE: {
+    SEATS_AVAILABLE: {
         type: Number,
         required: true
     },

@@ -18,7 +18,8 @@ module.exports = {
         USER_EXIST: function (name, details) { return `User exists with this ${name} :- ${details} , try another` },
         USER_INVALID_PASSWORD: 'Invalid User Password',
         USER_CREATE: 'User Create SuccessFull',
-        USER_NOT_CREATE: 'User Not Created'
+        USER_NOT_CREATE: 'User Not Created',
+        DATA_INSERT_SUCCESS: "Data Insert Successfull"
     },
     requestValidationMessage: {
         BAD_REQUEST: 'Invalid fields'

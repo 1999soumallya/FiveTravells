@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { UserLogout } from '../../Redux/Action/UserAction';
+import { UserLogout } from '../../Redux/Action/CommonAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faEnvelope, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faArrowRightFromBracket, faGear, faShoppingCart } from '@fortawesome/free-solid-svg-icons'

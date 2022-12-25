@@ -27,3 +27,10 @@ footer {
     background-color: #f7faff;
     transition: margin-left .6s ease-out;
 }
+
+.loader{
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

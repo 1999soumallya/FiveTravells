@@ -1,12 +1,11 @@
 const { FileUpload } = require('../Controller/FileUpload');
 const path = require('path')
-const XLSX = require('xlsx')
 const multer = require('multer')
 
 //multer
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../public/uploads')
+        cb(null, path.join(__dirname,'../public/'))
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)

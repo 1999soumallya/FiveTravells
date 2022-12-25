@@ -10,7 +10,7 @@ import validator from 'validator';
 import { CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CInputGroup, CInputGroupText, CRow, } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibMinutemailer, cilAnimal, cilCalendar, cilLockLocked, cilUser } from '@coreui/icons'
-import { UserRegisterAction } from '../Redux/Action/UserAction';
+import { UserRegisterAction } from '../Redux/Action/CommonAction';
 import 'react-phone-number-input/style.css'
 import 'react-input-calendar/style/index.css'
 import 'react-toastify/dist/ReactToastify.css';

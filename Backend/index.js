@@ -10,7 +10,7 @@ ConnectMongoose()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send("This is my node Server")
@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', require('./Router/CommonRoute'))
 app.use('/api/fileupload', require('./Router/FileUploadRouter'))
+app.use('/api/admin', require('./Router/AdminRoute'))
 
 app.listen(constants.config.PORT, () => {
     console.log(`My node Server Run On ${constants.config.PORT}`);
