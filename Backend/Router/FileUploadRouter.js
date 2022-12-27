@@ -1,4 +1,4 @@
-const { FileUpload } = require('../Controller/FileUpload');
+const { FileUpload, AirportDataUpload } = require('../Controller/FileUpload');
 // const path = require('path')
 // const multer = require('multer');
 const { validateToken } = require('../Middleware/tokenValidation');
@@ -18,5 +18,7 @@ const { validateToken } = require('../Middleware/tokenValidation');
 const router = require('express').Router();
 
 router.route('/').post(validateToken, FileUpload)
+
+router.route('/airportfileupload').post(validateToken, AirportDataUpload)
 
 module.exports = router
