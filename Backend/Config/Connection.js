@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const constants = require('../Constants/Constants')
 const mysql = require('mysql')
+const Constants = require('../Constants/Constants')
 require('colors')
 
 const ConnectMongoose = () => {
@@ -14,9 +15,9 @@ const ConnectMongoose = () => {
 const ConnectMysql = () => {
     let connection = mysql.createConnection({
         host: "localhost",
-        user: "elpdev",
-        password: "elphill123",
-        database: "FiveTravells"
+        user: Constants.config.user,
+        password: Constants.config.password,
+        database: Constants.config.database
     })
     connection.connect(function (err) {
         if (err) console.log(err);

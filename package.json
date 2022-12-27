@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon Backend/index.js",
     "client": "npm start --prefix Frontend",
+    "config": "node Backend/seeder.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],

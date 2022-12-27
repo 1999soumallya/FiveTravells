@@ -9,7 +9,7 @@ const Fileuploadschima = mongoose.Schema({
         type: String,
         required: true
     },
-    TO: {
+    SECTOR: {
         type: String,
         required: true
     },
