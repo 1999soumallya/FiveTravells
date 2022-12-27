@@ -1,25 +1,19 @@
-.select_area label {
+.select_box {
+    background-color: #103f5b;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.select_from label {
     color: #fff;
     font-size: 14px;
     text-transform: capitalize;
     margin-bottom: 4px;
     display: block;
-}
-
-.form-control {
-    height: 35px;
-    border: none;
-    padding: 0px 5px;
-    width: 100%;
-    box-sizing: border-box;
-    outline: none !important;
-    border-radius: 3px;
-}
-
-.select_area select {
-    width: 100%;
-    padding: 5px;
-    border-radius: 3px;
 }
 
 .search_btn {
@@ -32,5 +26,6 @@
     border-radius: 3px;
     text-transform: capitalize;
     font-weight: 600;
-    color: blue;
+    color: #103f5b;
+    cursor: pointer;
 }
