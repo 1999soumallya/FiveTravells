@@ -15,7 +15,7 @@ const AirPortDetails = mongoose.Schema({
     },
     Country_Name: {
         type: String,
-        required: true
+        // required: true
     },
     Country_Abbrev: {
         type: String,
