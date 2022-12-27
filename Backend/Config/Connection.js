@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const constants = require('../Constants/Constants')
+const mysql = require('mysql')
 require('colors')
 
 const ConnectMongoose = () => {
@@ -10,4 +11,18 @@ const ConnectMongoose = () => {
     db.once('open', () => console.log(`Detabase Connected!`.inverse.green))
 }
 
-module.exports = { ConnectMongoose }
+const ConnectMysql = () => {
+    let connection = mysql.createConnection({
+        host: "localhost",
+        user: "elpdev",
+        password: "elphill123",
+        database: "FiveTravells"
+    })
+    connection.connect(function (err) {
+        if (err) console.log(err);
+        console.log("Mysql Server is connected");
+    })
+    return connection
+}
+
+module.exports = { ConnectMongoose, ConnectMysql }

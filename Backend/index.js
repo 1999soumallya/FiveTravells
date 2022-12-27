@@ -1,6 +1,6 @@
 const express = require('express')
 const constants = require('./Constants/Constants')
-const { ConnectMongoose } = require('./Config/Connection')
+const { ConnectMongoose, ConnectMysql } = require('./Config/Connection')
 const fileupload = require('express-fileupload')
 const cors = require('cors')
 const path = require('path')
@@ -8,6 +8,7 @@ const path = require('path')
 const app = express()
 
 ConnectMongoose()
+// ConnectMysql()
 
 app.use(cors())
 app.use(express.json())
