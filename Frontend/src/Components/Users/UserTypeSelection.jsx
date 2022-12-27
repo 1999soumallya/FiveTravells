@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import '../../Css/Dashboard.css'
+import '../../Css/TypeSelection.css'
 import { Link } from 'react-router-dom'
 
 export default function UserTypeSelection() {

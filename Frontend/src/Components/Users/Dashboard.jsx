@@ -1,0 +1,105 @@
+import React from 'react'
+import { Container } from 'react-bootstrap'
+import '../../Css/Dashboard.css'
+
+export default function Dashboard() {
+    return (
+        <Container>
+            {/* <!-- Destination Area --> */}
+            <div class="destination_area">
+                <div class="prev">
+                    <h4><i class="fa-solid fa-chevron-left"></i> Prev</h4>
+                </div>
+                <div class="middale_content">
+                    <h2>Delhi - goa in</h2>
+                </div>
+                <div class="next">
+                    <h4>Next <i class="fa-solid fa-chevron-right"></i></h4>
+                </div>
+            </div>
+            {/* <!-- Destination Area --> */}
+            {/* <!-- Destination Time table --> */}
+            <div class="table_grid">
+                <div class="destime_table">
+                    <div class="des_content">
+                        <img src="images/icon.jpg" alt="" />
+                        <h4>spice jet sg 8411</h4>
+                    </div>
+                    <div class="des_title">
+                        <h3>Del</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_time">
+                        <h4>2 hrs 40 mins</h4>
+                        <span>Direct</span>
+                    </div>
+                    <div class="des_title">
+                        <h3>goa</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_price">
+                        <span> non refoundable</span>
+                        <h3><i class="fa-solid fa-indian-rupee-sign"></i> 8000</h3>
+                    </div>
+                    <div class="des_bookbtn">
+                        <button>book</button>
+                        <p>Seats left : 6</p>
+                    </div>
+                </div>
+                <div class="destime_table">
+                    <div class="des_content">
+                        <img src="images/icon.jpg" alt="" />
+                        <h4>spice jet sg 8411</h4>
+                    </div>
+                    <div class="des_title">
+                        <h3>Del</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_time">
+                        <h4>2 hrs 40 mins</h4>
+                        <span>Direct</span>
+                    </div>
+                    <div class="des_title">
+                        <h3>goa</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_price">
+                        <span> non refoundable</span>
+                        <h3><i class="fa-solid fa-indian-rupee-sign"></i> 8000</h3>
+                    </div>
+                    <div class="des_bookbtn">
+                        <button>book</button>
+                        <p>Seats left : 6</p>
+                    </div>
+                </div>
+                <div class="destime_table">
+                    <div class="des_content">
+                        <img src="images/icon.jpg" alt="" />
+                        <h4>spice jet sg 8411</h4>
+                    </div>
+                    <div class="des_title">
+                        <h3>Del</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_time">
+                        <h4>2 hrs 40 mins</h4>
+                        <span>Direct</span>
+                    </div>
+                    <div class="des_title">
+                        <h3>goa</h3>
+                        <h2>17:45</h2>
+                    </div>
+                    <div class="des_price">
+                        <span> non refoundable</span>
+                        <h3><i class="fa-solid fa-indian-rupee-sign"></i> 8000</h3>
+                    </div>
+                    <div class="des_bookbtn">
+                        <button>book</button>
+                        <p>Seats left : 6</p>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- Destination Time table --> */}
+        </Container>
+    )
+}

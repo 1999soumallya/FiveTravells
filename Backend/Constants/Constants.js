@@ -11,7 +11,7 @@ module.exports = {
         EXPAIR_DATE: "1d",
         host: "localhost",
         user: "root",
-        password: "",
+        password: "Pupundey@123",
         database: "FiveTravells"
     },
     CommonQueryMessage: {
