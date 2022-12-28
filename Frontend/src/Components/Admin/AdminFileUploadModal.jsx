@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileImport, faFileSignature, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { faFileImport, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux'
 import { FileUploadAction } from '../../Redux/Action/AdminAction'
 
 export default function AdminFileUploadModal() {
     const [first, setfirst] = useState("")
 
-    const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm()
+    const FileUpload = useSelector((state) => state.FileUpload)
+    const { fileupload } = FileUpload
+
     const dispatch = useDispatch()
 
     const fileUpload = (e) => {
@@ -16,6 +17,9 @@ export default function AdminFileUploadModal() {
         const fordata = new FormData()
         fordata.append('excel', first)
         dispatch(FileUploadAction(fordata))
+        if (fileupload) {
+            document.getElementById('uploadform').reset()
+        }
     }
 
     return (
@@ -34,48 +38,35 @@ export default function AdminFileUploadModal() {
                             <form className="form form-horizontal" id='uploadform' onSubmit={fileUpload}>
                                 <div className="form-body">
                                     <div className="row">
-                                        {/* <div className="col-md-4">
-                                            <label>File Name</label>
-                                        </div>
-                                        <div className="col-md-8">
-                                            <div className="form-group has-icon-left">
-                                                <div className="position-relative">
-                                                    <input type="text" className="form-control" placeholder="File Name" id="filename" {...register('filename', { required: true })} style={{ "border": "1px solid rgba(0, 0, 0, 0.34)" }} />
-                                                    <div className="form-control-icon">
-                                                        <FontAwesomeIcon icon={faFileSignature} />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
                                         <div className="col-md-4">
                                             <label>Upload File</label>
                                         </div>
                                         <div className="col-md-8">
                                             <div className="form-group has-icon-left">
                                                 <div className="position-relative">
-                                                    <input type="file" className="form-control" id="fileupload" onChange={(e)=> setfirst(e.target.files[0])} style={{ "border": "1px solid rgba(0, 0, 0, 0.34)" }} />
+                                                    <input type="file" className="form-control" id="fileupload" onChange={(e) => setfirst(e.target.files[0])} style={{ "border": "1px solid rgba(0, 0, 0, 0.34)" }} />
                                                     <div className="form-control-icon">
-                                                        <FontAwesomeIcon icon={faFileImport}/>
+                                                        <FontAwesomeIcon icon={faFileImport} />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-12 d-flex justify-content-end ">
-                                            <button type="submit" className="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" className="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            <button type="submit" id="submitBtn" className="btn btn-primary me-1 mb-1" hidden>Submit</button>
+                                            <button type="reset" id="resetBtn" className="btn btn-light-secondary me-1 mb-1" hidden>Reset</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn" data-bs-dismiss="modal">
+                            <button type="button" className="btn" onClick={(e) => { e.preventDefault(); document.getElementById("resetBtn").click(); }}>
                                 <i className="bx bx-x d-block d-sm-none"></i>
                                 <span className="d-none d-sm-block">Reset</span>
                             </button>
-                            <button type="button" className="btn btn-primary ml-1" data-bs-dismiss="modal">
+                            <button type="button" className="btn btn-primary ml-1" onClick={(e) => { e.preventDefault(); document.getElementById("submitBtn").click(); }}>
                                 <i className="bx bx-check d-block d-sm-none"></i>
-                                <span className="d-none d-sm-block">Accept</span>
+                                <span className="d-none d-sm-block">Upload</span>
                             </button>
                         </div>
                     </div>

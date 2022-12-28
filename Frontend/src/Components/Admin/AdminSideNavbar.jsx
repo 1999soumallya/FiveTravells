@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Image } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileUpload, faHome, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faFileUpload, faHome, faPlaneCircleCheck, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
+import Logo from '../../Images/logo.png'
 
 export default function AdminSideNavbar() {
 
@@ -24,7 +26,7 @@ export default function AdminSideNavbar() {
             <div id="sidebar" className='active'>
                 <div className="sidebar-wrapper active">
                     <div className="sidebar-header">
-                        <img src="assets/images/logo.svg" alt="" srcSet="" />
+                        <Image src={Logo} alt="Logo"/>
                     </div>
                     <div className="sidebar-menu">
                         <ul className="menu">
@@ -45,6 +47,12 @@ export default function AdminSideNavbar() {
                                 <Link to="/admin/addsubadmin" className='sidebar-link'>
                                     <FontAwesomeIcon icon={faUserPlus} />
                                     <span> Add Sub Admin </span>
+                                </Link>
+                            </li>
+                            <li className="sidebar-item has-sub" id='addsubadmin'>
+                                <Link to="/admin/flightlist" className='sidebar-link'>
+                                    <FontAwesomeIcon icon={faPlaneCircleCheck} />
+                                    <span> Airlines List </span>
                                 </Link>
                             </li>
                         </ul>

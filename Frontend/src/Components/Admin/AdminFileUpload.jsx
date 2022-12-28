@@ -112,7 +112,7 @@ export default function AdminFileUpload() {
             </div>
             <div className='mt-3'>
                 {
-                    loading ? <DnaLoader /> : error ? <ErrorAlert /> : (body.length === 0) ? <ErrorAlert variant={"success"} children={"No Air line Deta found"} /> : (
+                    loading ? <DnaLoader /> : error ? <ErrorAlert variant={"danger"} children={error} /> : (body.length === 0) ? <ErrorAlert variant={"success"} children={"No Air line Deta found"} /> : (
                         <DataTable keyField='id' title="Air Line Details" data={body} columns={columns} pagination />
                     )
                 }

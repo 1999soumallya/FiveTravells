@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { Image } from 'react-bootstrap'
 import { UserLogout } from '../../Redux/Action/CommonAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faEnvelope, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faArrowRightFromBracket, faGear, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import ProfileImage from '../../Images/avatar/avatar-s.png'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminTopNavbar() {
     const [name, setname] = useState("")
@@ -96,13 +98,13 @@ export default function AdminTopNavbar() {
                             <li className="dropdown">
                                 <Link href="#" data-bs-toggle="dropdown" className="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                     <div className="avatar me-1">
-                                        <img src="assets/images/avatar/avatar-s-1.png" alt="" srcSet="" />
+                                        <Image src={ProfileImage} alt="" srcSet="" />
                                     </div>
                                     <div className="d-none d-md-block
                                         d-lg-inline-block">Hi, {name}</div>
                                 </Link>
                                 <div className="dropdown-menu dropdown-menu-end gap-2">
-                                    <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faUser} /><span className='ms-2'> Account </span></Link>
+                                    <Link className="dropdown-item" to={"/admin/profile/"}><FontAwesomeIcon icon={faUser} /><span className='ms-2'> Account </span></Link>
                                     <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faMessage} /><span className='ms-2'>Messages</span></Link>
                                     <Link className="dropdown-item" href="#"><FontAwesomeIcon icon={faGear} /><span className='ms-2'>Settings</span></Link>
                                     <div className="dropdown-divider"></div>

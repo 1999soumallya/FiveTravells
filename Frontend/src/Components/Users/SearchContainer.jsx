@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { Container, Form } from 'react-bootstrap'
@@ -6,6 +6,9 @@ import '../../Css/Search.css'
 import { GetAllAirportDetailsAction } from '../../Redux/Action/UserAction'
 
 export default function SearchContainer() {
+
+    const [Origin, setOrigin] = useState("New Delhi")
+    const [Destination, setDestination] = useState("Bangalore")
 
     const AllAirport = useSelector((state) => state.AllAirport)
     const { Allairport } = AllAirport
@@ -20,6 +23,8 @@ export default function SearchContainer() {
     }, [dispatch, setValue])
 
     const FilterData = (data) => {
+        setOrigin(data.Origin)
+        setDestination(data.Destination)
         console.log(data);
     }
 
@@ -32,7 +37,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Origin</label>
                             <select name="cars" id="cars" className="form-control" {...register('Origin', { required: true })}>
-                                <option defaultValue={'Delhi'} selected>Delhi</option>
+                                <option defaultValue={'Delhi'} selected>New Delhi</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>
@@ -99,6 +104,13 @@ export default function SearchContainer() {
                     </div>
                 </div>
             </Form>
+            {/* <!-- Destination Area --> */}
+            <div className="destination_area">
+                <div className="middale_content">
+                    <h2> Flights from {Origin} to {Destination} </h2>
+                </div>
+            </div>
+            {/* <!-- Destination Area --> */}
         </Container>
     )
 }
