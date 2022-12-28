@@ -42,7 +42,7 @@ export default function AdminFileUpload() {
         },
         {
             id: 'TO',
-            selector: row => row.TO,
+            selector: row => row.SECTOR,
             name: 'TO',
             sortable: true,
             grow: 1,
@@ -100,7 +100,7 @@ export default function AdminFileUpload() {
 
 
     allFlight?.map((allFlight) => {
-        return body.push({ id: allFlight._id, AIRLINE_LOGO: allFlight.AIRLINE_LOGO, FORM: allFlight.FORM, TO: allFlight.TO, DEPARTURE_DATE: allFlight.DEPARTURE_DATE, DEPARTURE_TIME: allFlight.DEPARTURE_TIME, FLIGHT_DERATION_AND_LAYOVER: allFlight.FLIGHT_DERATION_AND_LAYOVER, ARRIVAL_TIME: allFlight.ARRIVAL_TIME, TOTAL_SEATS: allFlight.TOTAL_SEATS, SEATS_AVAILABLE: allFlight.SEATS_AVAILABLE, SEATS_SOLD: allFlight.SEATS_SOLD, PRICE: allFlight.PRICE })
+        return body.push({ id: allFlight._id, AIRLINE_LOGO: allFlight.AIRLINE_LOGO, FORM: allFlight.FORM, SECTOR: allFlight.SECTOR, DEPARTURE_DATE: allFlight.DEPARTURE_DATE, DEPARTURE_TIME: allFlight.DEPARTURE_TIME, FLIGHT_DERATION_AND_LAYOVER: allFlight.FLIGHT_DERATION_AND_LAYOVER, ARRIVAL_TIME: allFlight.ARRIVAL_TIME, TOTAL_SEATS: allFlight.TOTAL_SEATS, SEATS_AVAILABLE: allFlight.SEATS_AVAILABLE, SEATS_SOLD: allFlight.SEATS_SOLD, PRICE: allFlight.PRICE })
     })
 
     return (

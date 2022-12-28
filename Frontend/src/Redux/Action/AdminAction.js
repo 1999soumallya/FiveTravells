@@ -20,7 +20,7 @@ export const FileUploadAction = (data) => async (dispatch, getState) => {
         const config = { headers: { "Content-Type": "multipart/form-data", "Authorization": `Bearer ${userInfo.token}` } }
         const { deta } = await axios.post("/fileupload/", data, config)
         dispatch({ type: FILE_UPLOAD_SUCCESS, payload: deta });
-
+        dispatch(GetAllFlightDetailsAction())
     } catch (error) {
         dispatch({ type: FILE_UPLOAD_FAILS, payload: error.response && error.response.data })
     }
