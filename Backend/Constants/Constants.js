@@ -10,8 +10,8 @@ module.exports = {
         JWT_KEY: "JWT_SECRET_aksjdiUIOkmka97674bHyasydyvbc",
         EXPAIR_DATE: "1d",
         host: "localhost",
-        user: "root",
-        password: "Pupundey@123",
+        user: "elpdev",
+        password: "elphill123",
         database: "FiveTravells"
     },
     CommonQueryMessage: {

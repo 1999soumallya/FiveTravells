@@ -1,6 +1,6 @@
 const express = require('express')
 const constants = require('./Constants/Constants')
-const { ConnectMongoose } = require('./Config/Connection')
+const { ConnectMongoose, ConnectMysql } = require('./Config/Connection')
 const fileupload = require('express-fileupload')
 const cors = require('cors')
 const path = require('path')
@@ -8,6 +8,7 @@ const path = require('path')
 const app = express()
 
 ConnectMongoose()
+ConnectMysql()
 
 app.use(cors())
 app.use(express.json())
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', require('./Router/CommonRoute'))
 app.use('/api/fileupload', require('./Router/FileUploadRouter'))
 app.use('/api/admin', require('./Router/AdminRoute'))
+app.use('/api/user', require('./Router/UserRoute'))
 
 app.listen(constants.config.PORT, () => {
     console.log(`My node Server Run On ${constants.config.PORT}`);

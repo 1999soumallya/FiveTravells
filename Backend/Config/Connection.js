@@ -21,7 +21,6 @@ const ConnectMysql = () => {
     })
     connection.connect(function (err) {
         if (err) console.log(err);
-        console.log("Mysql Server is connected");
     })
     return connection
 }
