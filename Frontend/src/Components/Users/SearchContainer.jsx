@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { Container, Form } from 'react-bootstrap'
 import '../../Css/Search.css'
-import { GetAllAirportDetailsAction } from '../../Redux/Action/UserAction'
+import { GetAllAirportDetailsAction, GetFlightDetailsAction } from '../../Redux/Action/UserAction'
 
 export default function SearchContainer() {
 
@@ -17,15 +17,17 @@ export default function SearchContainer() {
 
     const dispatch = useDispatch()
 
+    // console.log();
+
     useEffect(() => {
         dispatch(GetAllAirportDetailsAction())
-        setValue('Depture_Date', new Date().toISOString().slice(0, 10))
+        setValue('Depture_Date', new Date().toLocaleDateString())
     }, [dispatch, setValue])
 
     const FilterData = (data) => {
         setOrigin(data.Origin)
         setDestination(data.Destination)
-        console.log(data);
+        dispatch(GetFlightDetailsAction(data))
     }
 
 
@@ -37,7 +39,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Origin</label>
                             <select name="cars" id="cars" className="form-control" {...register('Origin', { required: true })}>
-                                <option defaultValue={'Delhi'} selected>New Delhi</option>
+                                <option value={'DELHI '} selected>New Delhi</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>
@@ -50,7 +52,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Destination</label>
                             <select name="cars" id="cars" className="form-control" {...register('Destination', { required: true })}>
-                                <option defaultValue={'Bangalore'} selected>Bangalore</option>
+                                <option defaultValue={'GOA '} selected>GOA</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>

@@ -10,8 +10,8 @@ module.exports = {
         JWT_KEY: "JWT_SECRET_aksjdiUIOkmka97674bHyasydyvbc",
         EXPAIR_DATE: "1d",
         host: "localhost",
-        user: "root",
-        password: "",
+        user: "elpdev",
+        password: "elphill123",
         database: "FiveTravells"
     },
     CommonQueryMessage: {
@@ -23,7 +23,8 @@ module.exports = {
         USER_INVALID_PASSWORD: 'Invalid User Password',
         USER_CREATE: 'User Create SuccessFull',
         USER_NOT_CREATE: 'User Not Created',
-        DATA_INSERT_SUCCESS: "Data Insert Successfull"
+        DATA_INSERT_SUCCESS: "Data Insert Successfull",
+        NO_FLIGHT_DETAILS: "No Flight Avalable for this Fliter"
     },
     requestValidationMessage: {
         BAD_REQUEST: 'Invalid fields'
