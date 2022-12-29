@@ -11,5 +11,6 @@ connection.connect(function (err) {
     if (err) console.log(err);
     connection.query(`CREATE DATABASE IF NOT EXISTS ${Constants.config.database}`, (err, result) => {
         if (err) console.log(err);
+        console.log("DataBase Created successFull");
     })
 })

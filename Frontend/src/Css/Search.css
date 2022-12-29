@@ -29,3 +29,13 @@
     color: #103f5b;
     cursor: pointer;
 }
+
+#DeptureDate .input-calendar{
+    display: flex;
+}
+
+#DeptureDate .input-calendar .input-calendar-field, .PhoneInputInput{
+    width: 100% !important;
+    border-radius: 4px !important;
+    height: 37px !important;
+}

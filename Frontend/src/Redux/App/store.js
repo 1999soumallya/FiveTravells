@@ -13,7 +13,7 @@ const reducer = combineReducers({
     GetAllFlightDetails: GetAllFlightDetailsReducer,
     FileUpload: FileUploadReducer,
     AllAirport: GetAllAirportDetailsReducer,
-    FlightDetails: GetFlightDetailsReducer
+    GetFlightDetails: GetFlightDetailsReducer
 })
 
 const intialState = {

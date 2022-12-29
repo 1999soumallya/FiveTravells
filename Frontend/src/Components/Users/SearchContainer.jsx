@@ -17,11 +17,9 @@ export default function SearchContainer() {
 
     const dispatch = useDispatch()
 
-    // console.log();
-
     useEffect(() => {
         dispatch(GetAllAirportDetailsAction())
-        setValue('Depture_Date', new Date().toLocaleDateString())
+        setValue('Depture_Date', new Date().toISOString().slice(0, 10))
     }, [dispatch, setValue])
 
     const FilterData = (data) => {
@@ -52,7 +50,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Destination</label>
                             <select name="cars" id="cars" className="form-control" {...register('Destination', { required: true })}>
-                                <option defaultValue={'GOA '} selected>GOA</option>
+                                <option value={'GOA '} selected>GOA</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>
