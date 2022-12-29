@@ -24,7 +24,7 @@ module.exports = {
         USER_CREATE: 'User Create SuccessFull',
         USER_NOT_CREATE: 'User Not Created',
         DATA_INSERT_SUCCESS: "Data Insert Successfull",
-        NO_FLIGHT_DETAILS: "No Flight Avalable for this Fliter"
+        NO_FLIGHT_DETAILS: function (name) { return `No Flight Avalable for this ${name}`}
     },
     requestValidationMessage: {
         BAD_REQUEST: 'Invalid fields'

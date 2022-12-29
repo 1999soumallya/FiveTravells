@@ -13,12 +13,12 @@ export const GetAllAirportDetailsAction = () => async (dispatch) => {
     }
 }
 
-export const GetFlightDetailsAction = (data) => async (dispatch) => {
+export const GetFlightDetailsAction = (deta) => async (dispatch) => {
     try {
         dispatch({ type: GET_FLIGHT_DETAILS_REQUEST })
         const config = { headers: { "Content-Type": "application/json" } }
-        const { deta } = await axios.post('/user/flightdetails', data, config)
-        dispatch({ type: GET_FLIGHT_DETAILS_SUCCESS, payload: deta })
+        const { data } = await axios.post('/user/flightdetails', deta, config)
+        dispatch({ type: GET_FLIGHT_DETAILS_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: GET_FLIGHT_DETAILS_FAILS, payload: error.response && error.response.data })
     }

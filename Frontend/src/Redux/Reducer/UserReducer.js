@@ -16,10 +16,10 @@ export const GetAllAirportDetailsReducer = (state = { Allairport: [] }, action) 
     }
 }
 
-export const GetFlightDetailsReducer = (state = {}, action) => {
+export const GetFlightDetailsReducer = (state = { Flightdetails: [] }, action) => {
     switch (action.type) {
         case GET_FLIGHT_DETAILS_REQUEST:
-            return { loading: true }
+            return { loading: true, Flightdetails: [] }
 
         case GET_FLIGHT_DETAILS_SUCCESS:
             return { loading: false, Flightdetails: action.payload }
