@@ -46,11 +46,6 @@ module.exports.FileUpload = asyncHandler(async (req, res) => {
 })
 
 module.exports.AirportDataUpload = asyncHandler(async (req, res) => {
-    connection.query("CREATE TABLE IF NOT EXISTS`AirportDetails`(`id` int NOT NULL AUTO_INCREMENT, `City_Name` varchar(200) NOT NULL, Airport_Code varchar(200) NOT NULL,Airport_Name varchar(200) NOT NULL,Country_Name varchar(200) NOT NULL,Country_Abbrev varchar(200) NOT NULL,World_Area_Code int NOT NULL, PRIMARY KEY(`id`)) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci", (err, result) => {
-        if (err) {
-            console.log(err);
-        }
-    })
     const filename = req.files.fileupload.name;
     const file = req.files.fileupload
     let uploadPath = path.join(__dirname, '../public/AirportDetails/') + filename

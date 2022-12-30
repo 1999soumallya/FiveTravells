@@ -3,7 +3,6 @@ const constants = require('./Constants/Constants')
 const { ConnectMongoose, ConnectMysql } = require('./Config/Connection')
 const fileupload = require('express-fileupload')
 const cors = require('cors')
-const path = require('path')
 
 const app = express()
 
