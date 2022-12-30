@@ -3,7 +3,6 @@ const XLSX = require('xlsx')
 const path = require('path')
 const Constants = require('../Constants/Constants')
 const FileUploadModel = require('../Models/FileUploadModel')
-const AirPortDetailsModel = require('../Models/AirPortDetailsModel')
 const { ConnectMysql } = require('../Config/Connection')
 
 const connection = ConnectMysql()
@@ -21,10 +20,24 @@ module.exports.FileUpload = asyncHandler(async (req, res) => {
         let x = 0
         sheet_namelist.forEach(element => {
             let xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_namelist[x]]);
-            FileUploadModel.insertMany(xlData, (err, data) => {
-                if (err) {
-                    console.log(err.message.replace(/Error:/gi, '').trim());
-                }
+            xlData.forEach((xlData) => {
+                FileUploadModel.insertMany({
+                    AIRLINE_LOGO: xlData.AIRLINE_LOGO,
+                    FORM: xlData.FORM,
+                    SECTOR: xlData.SECTOR,
+                    DEPARTURE_DATE: new Date(xlData.DEPARTURE_DATE.split('-')[1] + '/' + xlData.DEPARTURE_DATE.split('-')[0] + '/' + xlData.DEPARTURE_DATE.split('-')[2]).toDateString(),
+                    DEPARTURE_TIME: xlData.DEPARTURE_TIME,
+                    FLIGHT_DERATION_AND_LAYOVER: xlData.FLIGHT_DERATION_AND_LAYOVER,
+                    ARRIVAL_TIME: xlData.ARRIVAL_TIME,
+                    TOTAL_SEATS: xlData.TOTAL_SEATS,
+                    SEATS_AVAILABLE: xlData.SEATS_AVAILABLE,
+                    SEATS_SOLD: xlData.SEATS_SOLD,
+                    PRICE: xlData.PRICE
+                }, (err, data) => {
+                    if (err) {
+                        console.log(err.message.replace(/Error:/gi, '').trim());
+                    }
+                })
             })
             x++
         });

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_FLIGHT_DETAILS_FAILS, GET_FLIGHT_DETAILS_REQUEST, GET_FLIGHT_DETAILS_SUCCESS } from "../Constants/UserConstance"
+import { GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_FLIGHT_DETAILS_FAILS, GET_FLIGHT_DETAILS_REQUEST, GET_FLIGHT_DETAILS_SUCCESS, GET_WEEKLY_FLIGHT_DETAILS_FAILS, GET_WEEKLY_FLIGHT_DETAILS_REQUEST, GET_WEEKLY_FLIGHT_DETAILS_SUCCESS } from "../Constants/UserConstance"
 
 export const GetAllAirportDetailsAction = () => async (dispatch) => {
     try {
@@ -21,5 +21,16 @@ export const GetFlightDetailsAction = (deta) => async (dispatch) => {
         dispatch({ type: GET_FLIGHT_DETAILS_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: GET_FLIGHT_DETAILS_FAILS, payload: error.response && error.response.data })
+    }
+}
+
+export const GetWeeklyFlightDetailsAction = () => async (dispatch) => {
+    try {
+        dispatch({ type: GET_WEEKLY_FLIGHT_DETAILS_REQUEST })
+        const config = { headers: { "Content-Type": "application/json" } }
+        const { data } = await axios.get('/user/weekflightdetails', config)
+        dispatch({ type: GET_WEEKLY_FLIGHT_DETAILS_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: GET_WEEKLY_FLIGHT_DETAILS_FAILS, payload: error.response && error.response.data })
     }
 }

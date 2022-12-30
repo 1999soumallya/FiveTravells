@@ -14,7 +14,7 @@ const Fileuploadschima = mongoose.Schema({
         required: true
     },
     DEPARTURE_DATE: {
-        type: String,
+        type: Date,
         required: true
     },
     DEPARTURE_TIME: {

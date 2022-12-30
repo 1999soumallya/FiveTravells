@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { UserLoginReducer, UserRegisterReducer } from '../Reducer/CommonReducer'
 import { FileUploadReducer, GetAllFlightDetailsReducer } from '../Reducer/AdminReducer'
-import { GetAllAirportDetailsReducer, GetFlightDetailsReducer } from '../Reducer/UserReducer'
+import { GetAllAirportDetailsReducer, GetFlightDetailsReducer, GetWeeklyFlightDetailsReducer } from '../Reducer/UserReducer'
 
 const userInfoFromLocalStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
@@ -13,7 +13,8 @@ const reducer = combineReducers({
     GetAllFlightDetails: GetAllFlightDetailsReducer,
     FileUpload: FileUploadReducer,
     AllAirport: GetAllAirportDetailsReducer,
-    GetFlightDetails: GetFlightDetailsReducer
+    GetFlightDetails: GetFlightDetailsReducer,
+    GetWeekFlight: GetWeeklyFlightDetailsReducer
 })
 
 const intialState = {
