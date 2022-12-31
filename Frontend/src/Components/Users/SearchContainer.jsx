@@ -37,7 +37,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Origin</label>
                             <select name="cars" id="cars" className="form-control" {...register('Origin', { required: true })}>
-                                <option value={'DELHI '} selected>New Delhi</option>
+                                <option value={'DELHI'} selected>New Delhi</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>
@@ -50,7 +50,7 @@ export default function SearchContainer() {
                         <div className="select_from">
                             <label htmlFor="">Destination</label>
                             <select name="cars" id="cars" className="form-control" {...register('Destination', { required: true })}>
-                                <option value={'GOA '} selected>GOA</option>
+                                <option value={'GOA'} selected>GOA</option>
                                 {
                                     Allairport?.map((Allairport) => (
                                         <option key={Allairport.City_Name} value={Allairport.City_Name}>{Allairport.City_Name}</option>
