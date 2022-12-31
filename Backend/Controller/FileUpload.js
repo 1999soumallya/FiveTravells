@@ -22,23 +22,28 @@ module.exports.FileUpload = asyncHandler(async (req, res) => {
         sheet_namelist.forEach(element => {
             let xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_namelist[x]]);
             xlData.forEach((xlData) => {
-                FileUploadModel.insertMany({
-                    AIRLINE_LOGO: xlData.AIRLINE_LOGO,
-                    FORM: xlData.FORM,
-                    SECTOR: xlData.SECTOR,
-                    DEPARTURE_DATE: new Date(xlData.DEPARTURE_DATE.split('-')[1] + '/' + xlData.DEPARTURE_DATE.split('-')[0] + '/' + xlData.DEPARTURE_DATE.split('-')[2]).toDateString(),
-                    DEPARTURE_TIME: xlData.DEPARTURE_TIME,
-                    FLIGHT_DERATION_AND_LAYOVER: xlData.FLIGHT_DERATION_AND_LAYOVER,
-                    ARRIVAL_TIME: xlData.ARRIVAL_TIME,
-                    TOTAL_SEATS: xlData.TOTAL_SEATS,
-                    SEATS_AVAILABLE: xlData.SEATS_AVAILABLE,
-                    SEATS_SOLD: xlData.SEATS_SOLD,
-                    PRICE: xlData.PRICE
-                }, (err, data) => {
+                connection.query(`INSERT INTO FlightDetails(AIRLINE_LOGO, LOGO, FORM, SECTOR, DEPARTURE_DATE, DEPARTURE_TIME, FLIGHT_DERATION_AND_LAYOVER, ARRIVAL_TIME, TOTAL_SEATS, SEATS_AVAILABLE, SEATS_SOLD, PRICE) VALUES ('${xlData.AIRLINE_LOGO.trim()}','${xlData.LOGO.trim()}','${xlData.FORM.trim()}','${xlData.SECTOR.trim()}','${xlData.DEPARTURE_DATE.trim()}','${xlData.DEPARTURE_TIME.trim()}','${xlData.FLIGHT_DERATION_AND_LAYOVER.trim()}','${xlData.ARRIVAL_TIME}',${xlData.TOTAL_SEATS},${xlData.SEATS_AVAILABLE},${xlData.SEATS_SOLD},${xlData.PRICE})`, (err) => {
                     if (err) {
-                        console.log(err.message.replace(/Error:/gi, '').trim());
+                        console.log(err);
                     }
                 })
+                // FileUploadModel.insertMany({
+                //     AIRLINE_LOGO: xlData.AIRLINE_LOGO,
+                //     FORM: xlData.FORM,
+                //     SECTOR: xlData.SECTOR,
+                //     DEPARTURE_DATE: new Date(xlData.DEPARTURE_DATE.split('-')[1] + '/' + xlData.DEPARTURE_DATE.split('-')[0] + '/' + xlData.DEPARTURE_DATE.split('-')[2]).toDateString(),
+                //     DEPARTURE_TIME: xlData.DEPARTURE_TIME,
+                //     FLIGHT_DERATION_AND_LAYOVER: xlData.FLIGHT_DERATION_AND_LAYOVER,
+                //     ARRIVAL_TIME: xlData.ARRIVAL_TIME,
+                //     TOTAL_SEATS: xlData.TOTAL_SEATS,
+                //     SEATS_AVAILABLE: xlData.SEATS_AVAILABLE,
+                //     SEATS_SOLD: xlData.SEATS_SOLD,
+                //     PRICE: xlData.PRICE
+                // }, (err, data) => {
+                //     if (err) {
+                //         console.log(err.message.replace(/Error:/gi, '').trim());
+                //     }
+                // })
             })
             x++
         });
