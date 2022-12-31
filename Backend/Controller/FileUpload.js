@@ -2,7 +2,8 @@ const asyncHandler = require('express-async-handler')
 const XLSX = require('xlsx')
 const path = require('path')
 const Constants = require('../Constants/Constants')
-const { FileUploadModel, ImageUploadModel } = require('../Models/FileUploadModel')
+const FileUploadModel = require('../Models/FileUploadModel')
+const ImageUploadModel = require('../Models/ImageUploadModel')
 const { ConnectMysql } = require('../Config/Connection')
 
 const connection = ConnectMysql()
@@ -73,13 +74,13 @@ module.exports.AirportDataUpload = asyncHandler(async (req, res) => {
 
 module.exports.PhotoUpload = asyncHandler(async (req, res) => {
     const filename = req.files.image.name
-    const uploadPath = path.join(__dirname, '../public/FlightLogo') + filename
+    const uploadPath = path.join(__dirname, '../public/FlightLogo') + filename.replaceAll(' ', '')
     const file = req.files.image
     file.mv(uploadPath, (err) => {
         console.log(err);
         res.status(404).send('File Upload Faield')
     })
-    ImageUploadModel.insertMany({ ImageName: filename, ImagePath: uploadPath }, (err) => {
+    ImageUploadModel.insertMany({ ImageName: filename.replaceAll(' ', ''), ImagePath: uploadPath }, (err) => {
         if (err) {
             console.log(err.message.replace(/Error:/gi, '').trim());
         }

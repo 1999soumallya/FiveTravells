@@ -5,6 +5,10 @@ const Fileuploadschima = mongoose.Schema({
         type: String,
         required: true
     },
+    LOGO: {
+        type: String,
+        required: true
+    },
     FORM: {
         type: String,
         required: true
@@ -47,18 +51,6 @@ const Fileuploadschima = mongoose.Schema({
     }
 }, { timestamps: true, })
 
-const ImageUploadSchima = mongoose.Schema({
-    ImageName: {
-        type: String,
-        required: true
-    },
-    ImagePath: {
-        type: String,
-        required: true
-    }
-}, { timestamps: true, })
-
 const FileUploadModel = mongoose.model('Fileupload', Fileuploadschima)
-const ImageUploadModel = mongoose.model('ImageUploadModel', ImageUploadSchima)
 
-module.exports = { FileUploadModel, ImageUploadModel }
+module.exports = FileUploadModel
