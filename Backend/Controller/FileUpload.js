@@ -81,7 +81,7 @@ module.exports.PhotoUpload = asyncHandler(async (req, res) => {
     })
     ImageUploadModel.insertMany({ ImageName: filename, ImagePath: uploadPath }, (err) => {
         if (err) {
-            console.log(err);
+            console.log(err.message.replace(/Error:/gi, '').trim());
         }
     })
 })
