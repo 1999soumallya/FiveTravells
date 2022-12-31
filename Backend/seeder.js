@@ -12,10 +12,10 @@ connection.connect(function (err) {
     connection.query(`CREATE DATABASE IF NOT EXISTS ${Constants.config.database}`, (err, result) => {
         if (err) console.log(err);
         if (result.warningCount) {
-            console.log("DataBase Already Exsist's");
+            console.log(Constants.DetabaseMessage.DETABASE_CERATE_ERROR(Constants.config.database));
             process.exit(0);
         } else {
-            console.log("DataBase Created successFull");
+            console.log(Constants.DetabaseMessage.DETABASE_CERATE_SUCCESSFULL(Constants.config.database));
             process.exit(0);
         }
     })

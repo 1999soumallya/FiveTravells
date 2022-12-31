@@ -26,6 +26,10 @@ module.exports = {
         DATA_INSERT_SUCCESS: "Data Insert Successfull",
         NO_FLIGHT_DETAILS: function (name) { return `No Flight Avalable for this ${name}`}
     },
+    DetabaseMessage: {
+        DETABASE_CERATE_SUCCESSFULL: function (name) { return `${name} detabase already exsist's` },
+        DETABASE_CERATE_ERROR: function (name) { return `${name} dataBase created successFull` }
+    },
     requestValidationMessage: {
         BAD_REQUEST: 'Invalid fields'
     },
