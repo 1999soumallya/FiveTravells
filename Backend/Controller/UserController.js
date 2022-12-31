@@ -41,7 +41,7 @@ module.exports.GetWeeklyFlightDetails = asyncHandler(async (req, res) => {
     let date = new Date();
     date.setDate(date.getDate() + 7);
     const FlightDeta = await FileUploadModel.find({ DEPARTURE_DATE: { $gte: new Date(), $lte: date } })
-    if (FlightDeta) {
+    if (FlightDeta.length > 0) {
         res.status(200).send(FormatMongoData(FlightDeta))
     } else {
         res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('Week'))
