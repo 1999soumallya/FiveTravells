@@ -1,7 +1,5 @@
 const asyncHandler = require('express-async-handler')
 const { ConnectMysql } = require('../Config/Connection')
-const FileUploadModel = require('../Models/FileUploadModel')
-const FormatMongoData = require('../utils/MongoFormatData')
 const Constants = require('../Constants/Constants')
 
 const connection = ConnectMysql()
@@ -27,13 +25,14 @@ module.exports.GetFlightDetails = asyncHandler(async (req, res) => {
 
 module.exports.GetWeeklyFlightDetails = asyncHandler(async (req, res) => {
     let date = new Date();
+    let currentDate = new Date()
     date.setDate(date.getDate() + 7);
-    console.log(new Date().toISOString());
-    return
-    const FlightDeta = await FileUploadModel.find({ DEPARTURE_DATE: { $gte: new Date(), $lte: date } })
-    if (FlightDeta.length > 0) {
-        res.status(200).send(FormatMongoData(FlightDeta))
-    } else {
-        res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('Week'))
-    }
+    await connection.query(`SELECT DISTINCT * FROM flightdetails WHERE DEPARTURE_DATE >= '${currentDate.toISOString().split('T')[0]}' AND DEPARTURE_DATE <= '${date.toISOString().split('T')[0]}'`, (err, result) => {
+        if (err) console.log(err);
+        if (result.length > 0) {
+            res.status(200).json(result)
+        } else {
+            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('Week'))
+        }
+    })
 })
