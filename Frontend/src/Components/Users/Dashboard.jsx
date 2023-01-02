@@ -17,7 +17,7 @@ export default function Dashboard() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (Flightdetails.length === 0) {
+        if (JSON.stringify(Flightdetails) === '[]') {
             dispatch(GetWeeklyFlightDetailsAction())
         }
     }, [Flightdetails, dispatch])
@@ -28,7 +28,7 @@ export default function Dashboard() {
             {/* <!-- Destination Time table --> */}
             <div className="table_grid">
                 {
-                    (Flightdetails.length === 0) ? WeekFlightdetailsloading ? <MagnifineLoader /> : WeekFlightdetailserror ? <ErrorAlert variant={"danger"} children={WeekFlightdetailserror} /> :
+                    (JSON.stringify(Flightdetails) === '[]') ? WeekFlightdetailsloading ? <MagnifineLoader /> : WeekFlightdetailserror ? <ErrorAlert variant={"danger"} children={WeekFlightdetailserror} /> :
                         (
                             WeekFlightdetails.map((WeekFlightdetails) => (
                                 <div className="destime_table" key={WeekFlightdetails._id}>
