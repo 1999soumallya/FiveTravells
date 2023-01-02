@@ -18,24 +18,24 @@ module.exports.GetFlightDetails = asyncHandler(async (req, res) => {
         if (result.length > 0) {
             res.status(200).json(result);
         } else {
-            connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE SECTOR= '${Destination}'`, (err, result) => {
+            connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE FORM = '${Origin}'`, (err, result) => {
                 if (err) console.log(err);
                 if (result.length > 0) {
-                    connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE AND FORM = '${Origin}'`, (err, result) => {
+                    connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE SECTOR= '${Destination}'`, (err, result) => {
                         if (err) console.log(err);
                         if (result.length > 0) {
                             connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE DEPARTURE_DATE = '${Depture_Date}'`, (err, result) => {
                                 if (err) console.log(err);
-                                if (result.length < 0) {
+                                if (result.length === 0) {
                                     res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`for ${Depture_Date}`))
                                 }
                             })
                         } else {
-                            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`form ${Origin}`))
+                            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`from ${Destination}`))
                         }
                     })
                 } else {
-                    res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`from ${Destination}`))
+                    res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`form ${Origin}`))
                 }
             })
         }
