@@ -33,7 +33,7 @@ export default function Dashboard() {
                             WeekFlightdetails.map((WeekFlightdetails) => (
                                 <div className="destime_table" key={WeekFlightdetails._id}>
                                     <div className="des_content">
-                                        <img src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${WeekFlightdetails.AIRLINE_LOGO.split('(')[WeekFlightdetails.AIRLINE_LOGO.split('(').length - 1].split(" ")[0]}.png`} alt="" />
+                                        <img src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${WeekFlightdetails.LOGO}.png`} height={44} alt={WeekFlightdetails.LOGO} />
                                         <h4>{WeekFlightdetails.AIRLINE_LOGO}</h4>
                                     </div>
                                     <div className="des_title">
@@ -53,7 +53,7 @@ export default function Dashboard() {
                                         <h3><i className="fa-solid fa-indian-rupee-sign"></i>{WeekFlightdetails.PRICE}</h3>
                                     </div>
                                     <div className="des_bookbtn">
-                                        <button>book</button>
+                                        <button>ENQUIRE NOW</button>
                                         <p>Seats left : {WeekFlightdetails.SEATS_AVAILABLE}</p>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ export default function Dashboard() {
                                 Flightdetails.map((Flightdetails) => (
                                     <div className="destime_table" key={Flightdetails._id}>
                                         <div className="des_content">
-                                            <img src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${Flightdetails.LOGO}.png`} height={44} alt="" />
+                                            <img src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${Flightdetails.LOGO}.png`} height={44} alt={Flightdetails.LOGO} />
                                             <h4>{Flightdetails.AIRLINE_LOGO}</h4>
                                         </div>
                                         <div className="des_title">
@@ -85,7 +85,7 @@ export default function Dashboard() {
                                             <h3><i className="fa-solid fa-indian-rupee-sign"></i>{Flightdetails.PRICE}</h3>
                                         </div>
                                         <div className="des_bookbtn">
-                                            <button>book</button>
+                                            <button>ENQUIRE NOW</button>
                                             <p>Seats left : {Flightdetails.SEATS_AVAILABLE}</p>
                                         </div>
                                     </div>
