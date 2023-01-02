@@ -18,7 +18,26 @@ module.exports.GetFlightDetails = asyncHandler(async (req, res) => {
         if (result.length > 0) {
             res.status(200).json(result);
         } else {
-            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('Week'))
+            connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE SECTOR= '${Destination}'`, (err, result) => {
+                if (err) console.log(err);
+                if (result.length > 0) {
+                    connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE AND FORM = '${Origin}'`, (err, result) => {
+                        if (err) console.log(err);
+                        if (result.length > 0) {
+                            connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE DEPARTURE_DATE = '${Depture_Date}'`, (err, result) => {
+                                if (err) console.log(err);
+                                if (result.length < 0) {
+                                    res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`for ${Depture_Date}`))
+                                }
+                            })
+                        } else {
+                            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`form ${Origin}`))
+                        }
+                    })
+                } else {
+                    res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(`from ${Destination}`))
+                }
+            })
         }
     })
 })
@@ -32,7 +51,7 @@ module.exports.GetWeeklyFlightDetails = asyncHandler(async (req, res) => {
         if (result.length > 0) {
             res.status(200).json(result)
         } else {
-            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('Week'))
+            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('for this Week'))
         }
     })
 })

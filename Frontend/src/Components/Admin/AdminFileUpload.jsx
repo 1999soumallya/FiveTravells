@@ -24,7 +24,7 @@ export default function AdminFileUpload() {
         dispatch(GetAllFlightDetailsAction())
     }, [dispatch, navigate, userInfo])
 
-    const body = [];
+
     const columns = [
         {
             id: 'AIRLINE_LOGO',
@@ -98,11 +98,6 @@ export default function AdminFileUpload() {
         }
     ];
 
-
-    allFlight?.map((allFlight) => {
-        return body.push({ id: allFlight._id, AIRLINE_LOGO: allFlight.AIRLINE_LOGO, FORM: allFlight.FORM, SECTOR: allFlight.SECTOR, DEPARTURE_DATE: allFlight.DEPARTURE_DATE, DEPARTURE_TIME: allFlight.DEPARTURE_TIME, FLIGHT_DERATION_AND_LAYOVER: allFlight.FLIGHT_DERATION_AND_LAYOVER, ARRIVAL_TIME: allFlight.ARRIVAL_TIME, TOTAL_SEATS: allFlight.TOTAL_SEATS, SEATS_AVAILABLE: allFlight.SEATS_AVAILABLE, SEATS_SOLD: allFlight.SEATS_SOLD, PRICE: allFlight.PRICE })
-    })
-
     return (
         <>
             <div className='d-flex justify-content-end'>
@@ -112,8 +107,8 @@ export default function AdminFileUpload() {
             </div>
             <div className='mt-3'>
                 {
-                    loading ? <DnaLoader /> : error ? <ErrorAlert variant={"danger"} children={error} /> : (body.length === 0) ? <ErrorAlert variant={"success"} children={"No Air line Deta found"} /> : (
-                        <DataTable keyField='id' title="Air Line Details" data={body} columns={columns} pagination />
+                    loading ? <DnaLoader /> : error ? <ErrorAlert variant={"danger"} children={error} /> : (allFlight.length === 0) ? <ErrorAlert variant={"success"} children={"No Air line Deta found"} /> : (
+                        <DataTable keyField='id' title="Air Line Details" data={allFlight} columns={columns} pagination />
                     )
                 }
             </div>
