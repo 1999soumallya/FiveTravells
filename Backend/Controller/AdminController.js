@@ -1,7 +1,15 @@
-const asyncHandler = require('express-async-handler')
-const FileUploadModel = require('../Models/FileUploadModel')
+const asyncHandler = require('express-async-handler');
+const { ConnectMysql } = require('../Config/Connection');
+
+const connection = ConnectMysql()
 
 module.exports.GetAllFlightData = asyncHandler(async (req, res) => {
-    const FlightDetails = await FileUploadModel.find({})
-    res.status(200).json(FlightDetails)
+    await connection.query(`SELECT DISTINCT * FROM flightdetails`, (err, result) => {
+        if (err) console.log(err);
+        if (result.length > 0) {
+            res.status(200).json(result)
+        } else {
+            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('for this Week'))
+        }
+    })
 })
