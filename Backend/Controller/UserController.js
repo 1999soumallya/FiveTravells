@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const { ConnectMysql } = require('../Config/Connection')
 const Constants = require('../Constants/Constants')
+const nodemailer = require('nodemailer')
 
 const connection = ConnectMysql()
 
@@ -52,6 +53,28 @@ module.exports.GetWeeklyFlightDetails = asyncHandler(async (req, res) => {
             res.status(200).json(result)
         } else {
             res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS('for this Week'))
+        }
+    })
+})
+
+module.exports.mailSendAdmin = asyncHandler(async (req, res) => {
+    let mailTransport = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "1999soumallya@gmail.com",
+            pass: "<Email app Passoword>"
+        }
+    })
+    mailTransport.sendMail({
+        from: "1999soumallya@gmail.com",
+        to: `${req.body.email}`,
+        subject: "This is my testing mail",
+        text: "Enter your message here"
+    }, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).send('Mail Send Success Full')
         }
     })
 })
