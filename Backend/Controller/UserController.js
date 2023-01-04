@@ -47,7 +47,7 @@ module.exports.GetWeeklyFlightDetails = asyncHandler(async (req, res) => {
     let date = new Date();
     let currentDate = new Date()
     date.setDate(date.getDate() + 7);
-    await connection.query(`SELECT DISTINCT * FROM flightdetails WHERE DEPARTURE_DATE >= '${currentDate.toISOString().split('T')[0]}' AND DEPARTURE_DATE <= '${date.toISOString().split('T')[0]}'`, (err, result) => {
+    await connection.query(`SELECT DISTINCT * FROM FlightDetails WHERE DEPARTURE_DATE >= '${currentDate.toISOString().split('T')[0]}' AND DEPARTURE_DATE <= '${date.toISOString().split('T')[0]}'`, (err, result) => {
         if (err) console.log(err);
         if (result.length > 0) {
             res.status(200).json(result)

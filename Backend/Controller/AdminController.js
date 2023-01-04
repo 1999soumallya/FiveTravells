@@ -4,7 +4,7 @@ const { ConnectMysql } = require('../Config/Connection');
 const connection = ConnectMysql()
 
 module.exports.GetAllFlightData = asyncHandler(async (req, res) => {
-    await connection.query(`SELECT DISTINCT * FROM flightdetails`, (err, result) => {
+    await connection.query(`SELECT DISTINCT * FROM FlightDetails`, (err, result) => {
         if (err) console.log(err);
         if (result.length > 0) {
             res.status(200).json(result)
