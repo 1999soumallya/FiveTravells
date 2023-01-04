@@ -9,7 +9,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
     const { handleSubmit, reset, formState: { errors }, register, clearErrors, control } = useForm()
 
     const onFormSubmit = (deta) => {
-        if (validateEmail(deta.email) === false) {
+        if (validateEmail(deta.emailid) === false) {
             return
         }
         console.log(deta);
