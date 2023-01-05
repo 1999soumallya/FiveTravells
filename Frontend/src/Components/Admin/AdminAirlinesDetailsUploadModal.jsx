@@ -2,13 +2,18 @@ import { faFileImport, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AirlinsFileUploadAction } from '../../Redux/Action/AdminAction';
 
 export default function AdminAirlinesDetailsUploadModal() {
     const [AirlineDetails, setAirlineDetails] = useState("")
 
+    const disptch = useDispatch()
+
     const AirlinesDetailsUpload = () => {
         const formData = new FormData()
         formData.append('fileupload', AirlineDetails)
+        disptch(AirlinsFileUploadAction(formData))
     }
     return (
         <>
