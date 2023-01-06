@@ -5,8 +5,8 @@ import Calendar from 'react-input-calendar'
 import validator from 'validator'
 
 export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
-
-    const { handleSubmit, reset, formState: { errors }, register, clearErrors, control } = useForm()
+    // , formState: { errors }
+    const { handleSubmit, reset, register, clearErrors, control } = useForm()
 
     const onFormSubmit = (deta) => {
         if (validateEmail(deta.emailid) === false) {
@@ -23,6 +23,8 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
     const validateEmail = (email) => {
         if (!validator.isEmail(email)) {
             return false
+        } else {
+            return true
         }
     }
 
@@ -33,7 +35,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">{FlightDate.split(" ")[FlightDate.split(" ").length - 2] + " To " + FlightDate.split(" ")[FlightDate.split(" ").length - 1]}</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">{FlightDate.split("Z")[1]}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => clearAll()}></button>
                         </div>
                         <div className="modal-body">
@@ -127,7 +129,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                            <button type="button" className="btn btn-primary" onClick={() => document.getElementById('submitbutton').click()}>Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={() => document.getElementById('submitbutton').click()}>Submit</button>
                         </div>
                     </div>
                 </div>

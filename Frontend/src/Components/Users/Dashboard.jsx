@@ -57,7 +57,7 @@ export default function Dashboard() {
                                             <h3><i className="fa-solid fa-indian-rupee-sign"></i>{WeekFlightdetails.PRICE}</h3>
                                         </div>
                                         <div className="des_bookbtn">
-                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={WeekFlightdetails.DEPARTURE_DATE + " " + WeekFlightdetails.AIRLINE_LOGO + " " + WeekFlightdetails.FORM + " " + WeekFlightdetails.SECTOR} onClick={(e) => setFlightDate(e.target.value)}>
+                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={WeekFlightdetails.DEPARTURE_DATE + " " + WeekFlightdetails.AIRLINE_LOGO + " " + WeekFlightdetails.FORM + " To " + WeekFlightdetails.SECTOR} onClick={(e) => setFlightDate(e.target.value)}>
                                                 ENQUIRE NOW
                                             </button>
                                             <p>Seats left : {WeekFlightdetails.SEATS_AVAILABLE}</p>
@@ -91,7 +91,7 @@ export default function Dashboard() {
                                                 <h3><i className="fa-solid fa-indian-rupee-sign"></i>{Flightdetails.PRICE}</h3>
                                             </div>
                                             <div className="des_bookbtn">
-                                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={Flightdetails.DEPARTURE_DATE} onClick={(e) => setFlightDate(e.target.value)}>
+                                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={Flightdetails.DEPARTURE_DATE + " " + Flightdetails.AIRLINE_LOGO + " " + Flightdetails.FORM + " To " + Flightdetails.SECTOR} onClick={(e) => setFlightDate(e.target.value)}>
                                                     ENQUIRE NOW
                                                 </button>
                                                 <p>Seats left : {Flightdetails.SEATS_AVAILABLE}</p>
