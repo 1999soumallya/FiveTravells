@@ -10,7 +10,8 @@ export default function AdminAirlinesDetailsUploadModal() {
 
     const disptch = useDispatch()
 
-    const AirlinesDetailsUpload = () => {
+    const AirlinesDetailsUpload = (e) => {
+        e.preventDefault()
         const formData = new FormData()
         formData.append('fileupload', AirlineDetails)
         disptch(AirlinsFileUploadAction(formData))

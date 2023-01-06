@@ -13,7 +13,7 @@ import AdminFileUpload from './Components/Admin/AdminFileUpload'
 import AdminAddSubAdmin from './Components/Admin/AdminAddSubAdmin'
 import Dashboard from './Components/Users/Dashboard';
 import AdminProfile from './Components/Admin/AdminProfile';
-import AdminFlightList from './Components/Admin/AdminFlightList';
+import AdminAirportList from './Components/Admin/AdminAirportList';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route path='/admin/fileupload' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminFileUpload /></div><AdminFooter /> </>]} />
         <Route path='/admin/addsubadmin' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminAddSubAdmin /></div><AdminFooter /> </>]} />
         <Route path='/admin/profile' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminProfile /></div><AdminFooter /> </>]} />
-        <Route path='/admin/flightlist' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminFlightList /></div><AdminFooter /> </>]} />
+        <Route path='/admin/airportlist' element={[<> <AdminSideNavbar /><AdminTopNavbar /><div className='admin_body'><AdminAirportList /></div><AdminFooter /> </>]} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>

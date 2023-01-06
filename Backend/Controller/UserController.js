@@ -2,6 +2,8 @@ const asyncHandler = require('express-async-handler')
 const { ConnectMysql } = require('../Config/Connection')
 const Constants = require('../Constants/Constants')
 const nodemailer = require('nodemailer')
+const PreBookingFlightModel = require('../Models/FlightBookModel')
+const FormatMongoData = require('../utils/MongoFormatData')
 
 const connection = ConnectMysql()
 
@@ -77,4 +79,14 @@ module.exports.mailSendAdmin = asyncHandler(async (req, res) => {
             res.status(200).send('Mail Send Success Full')
         }
     })
+})
+
+module.exports.PreBookingFlight = asyncHandler(async (req, res) => {
+    const { emailid, flightDate, name, phoneNo, Adult, Child, Infant } = req.body
+    const PreBookingFlight = await PreBookingFlightModel.create({ emailid, flightDate, name, phoneNo, Adult, Child, Infant })
+    if (PreBookingFlight) {
+        res.status(200).send("Your details has been saved")
+    } else {
+        res.status(404).send("Details Upload Failed")
+    }
 })

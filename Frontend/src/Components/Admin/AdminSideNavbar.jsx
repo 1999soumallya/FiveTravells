@@ -50,7 +50,7 @@ export default function AdminSideNavbar() {
                                 </Link>
                             </li>
                             <li className="sidebar-item has-sub" id='addsubadmin'>
-                                <Link to="/admin/flightlist" className='sidebar-link'>
+                                <Link to="/admin/airportlist" className='sidebar-link'>
                                     <FontAwesomeIcon icon={faPlaneCircleCheck} />
                                     <span> Airlines List </span>
                                 </Link>

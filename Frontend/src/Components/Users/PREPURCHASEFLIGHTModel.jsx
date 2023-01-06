@@ -1,18 +1,22 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form"
+import { useDispatch } from 'react-redux'
 import Calendar from 'react-input-calendar'
 import validator from 'validator'
+import { PreflightbookingAction } from '../../Redux/Action/UserAction'
 
 export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
     // , formState: { errors }
     const { handleSubmit, reset, register, clearErrors, control } = useForm()
 
+    const dispatch = useDispatch()
+
     const onFormSubmit = (deta) => {
         if (validateEmail(deta.emailid) === false) {
             return
         }
-        console.log(deta);
+        dispatch(PreflightbookingAction(deta))
     }
 
     const clearAll = () => {
@@ -63,7 +67,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                     <div className="col-6">
                                         <div className="form-group">
                                             <label htmlFor="">Destination Date & Flight</label>
-                                            <Controller control={control} name="fileghtDate" rules={{ required: "Date Of Birth is Require can not blank It" }} render={({ field }) => (
+                                            <Controller control={control} name="flightDate" rules={{ required: "Date Of Birth is Require can not blank It" }} render={({ field }) => (
                                                 <Calendar format='DD-MM-YYYY' date={new Date(FlightDate.split(" ")[0])} minDate={new Date(FlightDate)} onChange={(date) => field.onChange(date)} />
                                             )} />
                                         </div>
@@ -71,9 +75,8 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                     <div className="col-4">
                                         <div className="form-group">
                                             <label htmlFor="">Adults</label>
-
-                                            <select className="form-control">
-                                                <option value="1">1</option>
+                                            <select className="form-control" {...register("Adult", { required: true })}>
+                                                <option defaultValue="1">1</option>
                                                 <option value="1">2</option>
                                                 <option value="1">3</option>
                                                 <option value="1">4</option>
@@ -88,8 +91,8 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                     <div className="col-4">
                                         <div className="form-group">
                                             <label htmlFor="">Child</label>
-                                            <select className="form-control">
-                                                <option value="1">1</option>
+                                            <select className="form-control" {...register("Child", { required: true })}>
+                                                <option defaultValue="1">1</option>
                                                 <option value="1">2</option>
                                                 <option value="1">3</option>
                                                 <option value="1">4</option>
@@ -104,8 +107,8 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                     <div className="col-4">
                                         <div className="form-group">
                                             <label htmlFor="">Infant</label>
-                                            <select className="form-control">
-                                                <option value="1">1</option>
+                                            <select className="form-control" {...register("Infant", { required: true })}>
+                                                <option defaultValue="1">1</option>
                                                 <option value="1">2</option>
                                                 <option value="1">3</option>
                                                 <option value="1">4</option>

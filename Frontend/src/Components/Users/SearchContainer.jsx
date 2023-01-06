@@ -62,7 +62,7 @@ export default function SearchContainer() {
                     <div className="slect_items">
                         <div className="select_from">
                             <label htmlFor="">Depture Date</label>
-                            <input type="date" name="" id="" className="form-control" {...register('Depture_Date', { required: true })} />
+                            <input type="date" name="" id="" min={new Date().getFullYear() + '-' + String(new Date().getMonth() + 1).padStart(2, '0') + '-' + String(new Date().getDate()).padStart(2, '0')} className="form-control" {...register('Depture_Date', { required: true })} />
                         </div>
                     </div>
                     <div className="slect_items">
