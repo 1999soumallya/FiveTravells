@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form"
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,7 @@ import { PreflightbookingAction } from '../../Redux/Action/UserAction'
 
 export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
     // , formState: { errors }
-    const { handleSubmit, reset, register, clearErrors, control } = useForm()
+    const { handleSubmit, reset, register, clearErrors, control, setValue } = useForm()
 
     const dispatch = useDispatch()
 
@@ -18,6 +18,13 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
         }
         dispatch(PreflightbookingAction(deta))
     }
+
+    useEffect(() => {
+        if (FlightDate) {
+            setValue('flightDate', FlightDate.split("T")[0])
+        }
+    }, [FlightDate, setValue])
+
 
     const clearAll = () => {
         reset()
@@ -67,9 +74,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                     <div className="col-6">
                                         <div className="form-group">
                                             <label htmlFor="">Destination Date & Flight</label>
-                                            <Controller control={control} name="flightDate" rules={{ required: "Date Of Birth is Require can not blank It" }} render={({ field }) => (
-                                                <Calendar format='DD-MM-YYYY' date={new Date(FlightDate.split(" ")[0])} minDate={new Date(FlightDate)} onChange={(date) => field.onChange(date)} />
-                                            )} />
+                                            <input type="date" name="" id="" min={new Date().getFullYear() + '-' + String(new Date().getMonth() + 1).padStart(2, '0') + '-' + String(new Date().getDate()).padStart(2, '0')} className="form-control" {...register('flightDate', { required: true })} />
                                         </div>
                                     </div>
                                     <div className="col-4">
