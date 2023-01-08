@@ -3,7 +3,6 @@ const { ConnectMysql } = require('../Config/Connection')
 const Constants = require('../Constants/Constants')
 const nodemailer = require('nodemailer')
 const PreBookingFlightModel = require('../Models/FlightBookModel')
-const FormatMongoData = require('../utils/MongoFormatData')
 
 const connection = ConnectMysql()
 
@@ -82,8 +81,8 @@ module.exports.mailSendAdmin = asyncHandler(async (req, res) => {
 })
 
 module.exports.PreBookingFlight = asyncHandler(async (req, res) => {
-    const { emailid, flightDate, name, phoneNo, Adult, Child, Infant } = req.body
-    const PreBookingFlight = await PreBookingFlightModel.create({ emailid, flightDate, name, phoneNo, Adult, Child, Infant })
+    const { flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant } = req.body
+    const PreBookingFlight = await PreBookingFlightModel.create({ flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant })
     if (PreBookingFlight) {
         res.status(200).send("Your details has been saved")
     } else {

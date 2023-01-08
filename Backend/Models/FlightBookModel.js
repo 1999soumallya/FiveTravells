@@ -5,6 +5,10 @@ const PreBookingFlightSchima = mongoose.Schema({
         type: String,
         required: true
     },
+    flightdetails: {
+        type: String,
+        required: true
+    },
     flightDate: {
         type: String,
         required: true
