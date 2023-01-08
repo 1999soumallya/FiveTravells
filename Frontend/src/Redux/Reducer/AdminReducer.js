@@ -1,4 +1,4 @@
-import { AIRLINES_UPLOAD_FAILS, AIRLINES_UPLOAD_REQUEST, AIRLINES_UPLOAD_SUCCESS, FILE_UPLOAD_FAILS, FILE_UPLOAD_REQUEST, FILE_UPLOAD_SUCCESS, GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_ALL_FLIGHT_DETAILS_FAILS, GET_ALL_FLIGHT_DETAILS_REQUEST, GET_ALL_FLIGHT_DETAILS_SUCCESS } from '../Constants/AdminConstance'
+import { ADMIN_PRE_FLIGHT_BOOKING_FAILS, ADMIN_PRE_FLIGHT_BOOKING_REQUEST, ADMIN_PRE_FLIGHT_BOOKING_SUCCESS, AIRLINES_UPLOAD_FAILS, AIRLINES_UPLOAD_REQUEST, AIRLINES_UPLOAD_SUCCESS, FILE_UPLOAD_FAILS, FILE_UPLOAD_REQUEST, FILE_UPLOAD_SUCCESS, GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_ALL_FLIGHT_DETAILS_FAILS, GET_ALL_FLIGHT_DETAILS_REQUEST, GET_ALL_FLIGHT_DETAILS_SUCCESS } from '../Constants/AdminConstance'
 
 export const GetAllFlightDetailsReducer = (state = { allFlight: [] }, action) => {
     switch (action.type) {
@@ -36,10 +36,10 @@ export const AirlinsFileUploadReducer = (state = {}, action) => {
     switch (action.type) {
         case AIRLINES_UPLOAD_REQUEST:
             return { loading: true };
-        
+
         case AIRLINES_UPLOAD_SUCCESS:
             return { loading: false, AirlinsFile: action.payload }
-        
+
         case AIRLINES_UPLOAD_FAILS:
             return { loading: false, AirlinsFileError: action.payload }
 
@@ -58,6 +58,22 @@ export const AdminGetAllAirportDetailsReducer = (state = { Allairport: [] }, act
 
         case GET_ALL_AIRPORT_DETAILS_FAILS:
             return { loading: false, Allairporterror: action.payload };
+
+        default:
+            return state;
+    }
+}
+
+export const AdminGetPreFlightBookingReducer = (state = { PreFlightBooking: [] }, action) => {
+    switch (action.type) {
+        case ADMIN_PRE_FLIGHT_BOOKING_REQUEST:
+            return { loading: true, PreFlightBooking: [] };
+
+        case ADMIN_PRE_FLIGHT_BOOKING_SUCCESS:
+            return { loading: false, PreFlightBooking: action.payload };
+
+        case ADMIN_PRE_FLIGHT_BOOKING_FAILS:
+            return { loading: false, PreFlightBookingError: action.payload };
 
         default:
             return state;

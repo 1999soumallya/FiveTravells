@@ -1,5 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const { ConnectMysql } = require('../Config/Connection');
+const PreBookingFlightModel = require('../Models/FlightBookModel')
+const FormatMongoData = require('../utils/MongoFormatData')
 
 const connection = ConnectMysql()
 
@@ -19,4 +21,13 @@ module.exports.AirportDetails = asyncHandler(async (req, res) => {
         if (err) console.log(err);
         if (result) res.status(200).json(result);
     })
+})
+
+module.exports.PreFlightDetails = asyncHandler(async (req, res) => {
+    const preflightdetails = await PreBookingFlightModel.find({ bookingtype: 'Pre Flight Booking' })
+    if (preflightdetails) {
+        res.status(200).json(FormatMongoData(preflightdetails))
+    } else {
+        res.status(404).send("No Pre Flight Booking Details Available")
+    }
 })

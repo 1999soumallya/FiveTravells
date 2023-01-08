@@ -2,7 +2,7 @@ import { combineReducers, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { UserLoginReducer, UserRegisterReducer } from '../Reducer/CommonReducer'
-import { AdminGetAllAirportDetailsReducer, AirlinsFileUploadReducer, FileUploadReducer, GetAllFlightDetailsReducer } from '../Reducer/AdminReducer'
+import { AdminGetAllAirportDetailsReducer, AdminGetPreFlightBookingReducer, AirlinsFileUploadReducer, FileUploadReducer, GetAllFlightDetailsReducer } from '../Reducer/AdminReducer'
 import { GetAllAirportDetailsReducer, GetFlightDetailsReducer, GetWeeklyFlightDetailsReducer, PreflightbookingReducer } from '../Reducer/UserReducer'
 
 const userInfoFromLocalStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
@@ -17,7 +17,8 @@ const reducer = combineReducers({
     GetWeekFlight: GetWeeklyFlightDetailsReducer,
     AirlinsFileUpload: AirlinsFileUploadReducer,
     AdminAllAirportDetails: AdminGetAllAirportDetailsReducer,
-    PreFlightBooking: PreflightbookingReducer
+    PreFlightBooking: PreflightbookingReducer,
+    AdminPreFlightBooking: AdminGetPreFlightBookingReducer
 })
 
 const intialState = {
