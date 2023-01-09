@@ -1,4 +1,4 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "../Constants/CommonConstants";
+import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, VALIDATE_USER_FAILS, VALIDATE_USER_REQUEST, VALIDATE_USER_SUCCESS } from "../Constants/CommonConstants";
 
 export const UserRegisterReducer = (state = {}, action) => {
     switch (action.type) {
@@ -29,6 +29,22 @@ export const UserLoginReducer = (state = {}, action) => {
 
         case USER_LOGOUT:
             return {}
+
+        default:
+            return state;
+    }
+}
+
+export const UserValidation = (state = {}, action) => {
+    switch (action.type) {
+        case VALIDATE_USER_REQUEST:
+            return { validuserloading: true };
+
+        case VALIDATE_USER_SUCCESS:
+            return { validuserloading: false, validuser: action.payload };
+
+        case VALIDATE_USER_FAILS:
+            return { validuserloading: false, validuserError: action.payload }
 
         default:
             return state;

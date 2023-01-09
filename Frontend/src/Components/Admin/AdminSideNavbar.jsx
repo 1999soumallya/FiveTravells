@@ -3,30 +3,38 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Image } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileUpload, faHome, faPlaneCircleCheck, faUserPlus } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Logo from '../../Images/logo.png'
+import { UserLogout, UserValidation } from '../../Redux/Action/CommonAction'
 
 export default function AdminSideNavbar() {
 
     const userLogin = useSelector((state) => state.userLogin)
+    const validateuser = useSelector((state) => state.validateuser)
 
     const { userInfo } = userLogin
+    const { validuserError } = validateuser
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
         }
+        dispatch(UserValidation())
 
-    }, [navigate, userInfo])
+        if (validuserError) {
+            dispatch(UserLogout())
+        }
+    }, [dispatch, navigate, userInfo, validuserError])
 
     return (
         <>
             <div id="sidebar" className='active'>
                 <div className="sidebar-wrapper active">
                     <div className="sidebar-header">
-                        <Image src={Logo} alt="Logo"/>
+                        <Image src={Logo} alt="Logo" />
                     </div>
                     <div className="sidebar-menu">
                         <ul className="menu">

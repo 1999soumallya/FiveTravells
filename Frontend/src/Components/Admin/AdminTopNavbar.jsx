@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import { Image } from 'react-bootstrap'
-import { UserLogout } from '../../Redux/Action/CommonAction';
+import { UserLogout, UserValidation } from '../../Redux/Action/CommonAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faEnvelope, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faArrowRightFromBracket, faGear, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -13,30 +13,33 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTopNavbar() {
     const [name, setname] = useState("")
 
-    let count = 0
-
     const userLogin = useSelector((state) => state.userLogin)
+    const validateuser = useSelector((state) => state.validateuser)
 
     const { success, userInfo } = userLogin
+    const { validuserError } = validateuser
+
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         if (userInfo) {
             setname(userInfo.name)
             if (success) {
-                if (count < 1) {                    
-                    toast.success(`${userInfo.name} Login Success`, { theme: 'dark', position: 'top-center', draggable: true, pauseOnHover: true })
-                    count++
-                    return
-                }
+                toast.success(`${userInfo.name} Login Success`, { theme: 'dark', position: 'top-center', draggable: true, pauseOnHover: true })
             }
         } else {
             navigate('/login')
         }
 
-    }, [count, navigate, success, userInfo])
+        dispatch(UserValidation())
+        if (validuserError) {
+            dispatch(UserLogout())
+        }
+
+    }, [dispatch, navigate, success, userInfo, validuserError])
 
     const logoutHandaler = () => {
         dispatch(UserLogout())

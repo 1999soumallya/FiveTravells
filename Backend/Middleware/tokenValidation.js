@@ -12,7 +12,7 @@ module.exports.validateToken = asyncHandler(async (req, res, next) => {
             req.user = await CommonSchemaS.findById(decode.id).select("-password");
             next()
         } catch (error) {
-            res.status(401).send(Constants.CommonQueryMessage.MISSING_AUTH_TOKEN)
+            res.status(401).send(Constants.CommonQueryMessage.TOKEN_MISS_MATCHED)
         }
     } else {
         res.status(401).send(Constants.CommonQueryMessage.TOKEN_MISS_MATCHED)

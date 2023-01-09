@@ -3,7 +3,7 @@ const { SignUpUser, LoginUser, Validator } = require('../Controller/Common');
 
 const router = express.Router();
 
-router.route('/validator').post(Validator)
+router.route('/validator').get(Validator)
 
 router.route('/').post(SignUpUser)
 

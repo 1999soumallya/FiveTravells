@@ -1,4 +1,4 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "../Constants/CommonConstants"
+import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, VALIDATE_USER_FAILS, VALIDATE_USER_REQUEST, VALIDATE_USER_SUCCESS } from "../Constants/CommonConstants"
 import axios from 'axios'
 
 export const UserRegisterAction = (deta) => async (dispatch) => {
@@ -26,4 +26,16 @@ export const UserLoginAction = (deta) => async (dispatch) => {
 export const UserLogout = () => async (dispatch) => {
     localStorage.removeItem("userInfo");
     dispatch({ type: USER_LOGOUT });
+}
+
+export const UserValidation = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: VALIDATE_USER_REQUEST })
+        const { userLogin: { userInfo } } = getState()
+        const config = { headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userInfo.token}` } }
+        const { data } = await axios.get("/auth/validator", config)
+        dispatch({ type: VALIDATE_USER_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: VALIDATE_USER_FAILS, payload: error.response && error.response.data });
+    }
 }
