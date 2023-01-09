@@ -7,7 +7,7 @@ import { PreflightbookingAction } from '../../Redux/Action/UserAction'
 import { MagnifineLoader } from '../../Shared/Loaders/Loader'
 import ErrorAlert from '../../Shared/Alerts/CustomAlert'
 
-export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
+export default function PREPURCHASEFLIGHTModel({ FlightDate, FlightName, FlingRute, Id }) {
     // , formState: { errors }
     const { handleSubmit, reset, register, clearErrors, control, setValue } = useForm()
 
@@ -26,10 +26,12 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
 
     useEffect(() => {
         if (FlightDate) {
-            setValue('flightDate', FlightDate.split("T")[0])
-            setValue('flightdetails', FlightDate.split("Z")[1])
+            setValue('flightDate', new Date(FlightDate).toISOString().slice(0, 10))
+            setValue('flightdetails', FlightName)
+            setValue('flightroute', FlingRute)
+            setValue('id', Id)
         }
-    }, [FlightDate, setValue])
+    }, [FlightDate, setValue, FlightName, FlingRute, Id])
 
 
     const clearAll = () => {
@@ -52,16 +54,18 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">{FlightDate.split("Z")[1]}</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">{FlingRute} {FlightName}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => clearAll()}></button>
                         </div>
-                        <div className="modal-body" style={{ "minHeight": "279px"}}>
+                        <div className="modal-body" style={{ "minHeight": "279px" }}>
                             {
                                 loading ? <MagnifineLoader /> : preflightbookingerror ? <ErrorAlert variant={"denger"} children={preflightbookingerror} /> : preflightbooking ?
                                     <ErrorAlert variant={"success"} children={preflightbooking} /> : (
                                         <form onSubmit={handleSubmit(onFormSubmit)}>
                                             <div className="row">
                                                 <input type="text" {...register("flightdetails", { required: true })} hidden />
+                                                <input type="text" {...register("flightroute", { required: true })} hidden />
+                                                <input type="text" {...register("id", { required: true })} hidden />
                                                 <div className="col-6">
                                                     <div className="form-group">
                                                         <label htmlFor="">Name</label>
@@ -137,7 +141,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate }) {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group d-flex gap-2">
-                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {...register("termsPolicy", { required: true })} />
                                                         <label htmlFor="vehicle1"> I Accept Privacy Policy & Terms </label>
                                                     </div>
                                                 </div>

@@ -10,6 +10,9 @@ import PREPURCHASEFLIGHTModel from './PREPURCHASEFLIGHTModel'
 export default function Dashboard() {
 
     const [FlightDate, setFlightDate] = useState("")
+    const [FlightName, setFlightName] = useState("")
+    const [FlingRute, setFlightRute] = useState("")
+    const [id, setId] = useState("")
 
     const GetFlightDetails = useSelector((state) => state.GetFlightDetails)
     const GetWeekFlight = useSelector((state) => state.GetWeekFlight)
@@ -24,6 +27,13 @@ export default function Dashboard() {
             dispatch(GetWeeklyFlightDetailsAction())
         }
     }, [Flightdetails, dispatch])
+
+    const onChange = (data) => {
+        setId(JSON.parse(data).id)
+        setFlightDate(JSON.parse(data).flightdate)
+        setFlightName(JSON.parse(data).FLightName)
+        setFlightRute(JSON.parse(data).FlightDestination)
+    }
 
 
     return (
@@ -57,7 +67,7 @@ export default function Dashboard() {
                                             <h3><i className="fa-solid fa-indian-rupee-sign"></i>{WeekFlightdetails.PRICE}</h3>
                                         </div>
                                         <div className="des_bookbtn">
-                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={WeekFlightdetails.DEPARTURE_DATE + " " + WeekFlightdetails.AIRLINE_LOGO + " " + WeekFlightdetails.FORM + " To " + WeekFlightdetails.SECTOR} onClick={(e) => setFlightDate(e.target.value)}>
+                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PrePurchaseFlightModel" value={JSON.stringify({"id": WeekFlightdetails.id, "flightdate": WeekFlightdetails.DEPARTURE_DATE, "FLightName" : WeekFlightdetails.AIRLINE_LOGO, "FlightDestination": WeekFlightdetails.FORM + " To " + WeekFlightdetails.SECTOR})} onClick={(e) => onChange(e.target.value)}>
                                                 ENQUIRE NOW
                                             </button>
                                             <p>Seats left : {WeekFlightdetails.SEATS_AVAILABLE}</p>
@@ -103,7 +113,7 @@ export default function Dashboard() {
                 </div>
                 {/* <!-- Destination Time table --> */}
             </Container>
-            <PREPURCHASEFLIGHTModel FlightDate={FlightDate} />
+            <PREPURCHASEFLIGHTModel FlightDate={FlightDate} FlightName={FlightName} FlingRute={FlingRute} Id={id} />
         </>
     )
 }

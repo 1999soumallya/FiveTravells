@@ -81,11 +81,17 @@ module.exports.mailSendAdmin = asyncHandler(async (req, res) => {
 })
 
 module.exports.PreBookingFlight = asyncHandler(async (req, res) => {
-    const { flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant } = req.body
-    const PreBookingFlight = await PreBookingFlightModel.create({ flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant })
+    const { flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant, flightroute, id } = req.body
+    const PreBookingFlight = await PreBookingFlightModel.create({ flightdetails, emailid, flightDate, name, phoneNo, Adult, Child, Infant, flightroute })
     if (PreBookingFlight) {
         res.status(200).send("Your details has been saved")
     } else {
         res.status(404).send("Details Upload Failed")
     }
+    await connection.query(`SELECT SEATS_AVAILABLE, SEATS_SOLD FROM FlightDetails WHERE id = ${id};`, (err, result) => {
+        if (err) console.log(err);
+        if (result) {
+            connection.query(`UPDATE FlightDetails SET SEATS_AVAILABLE ='${parseInt(result[0].SEATS_AVAILABLE) - parseInt(Adult) - parseInt(Child) - parseInt(Infant)}', SEATS_SOLD='${parseInt(result[0].SEATS_SOLD) + parseInt(Adult) + parseInt(Child) + parseInt(Infant)}' WHERE id = ${id}`)
+        }
+    })
 })

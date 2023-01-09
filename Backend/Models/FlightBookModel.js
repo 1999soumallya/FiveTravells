@@ -13,6 +13,10 @@ const PreBookingFlightSchima = mongoose.Schema({
         type: String,
         required: true
     },
+    flightroute: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
