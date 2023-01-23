@@ -1631,3 +1631,16 @@ footer {
 .bg-gray-700 {
     background-color: #4a5568 !important
 }
+
+.PhoneInputInput:focus-visible {
+    color: #555252 !important;
+    background-color: #fff !important;
+    border-color: #5a8dee !important;
+    outline: 0 !important;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .1) !important
+}
+
+#selectflightdetails {
+    border-bottom: 1px solid #16141469;
+    margin-bottom: 5px;
+}

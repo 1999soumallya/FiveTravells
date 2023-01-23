@@ -2,7 +2,6 @@ const asyncHandler = require('express-async-handler')
 const XLSX = require('xlsx')
 const path = require('path')
 const Constants = require('../Constants/Constants')
-const FileUploadModel = require('../Models/FileUploadModel')
 const ImageUploadModel = require('../Models/ImageUploadModel')
 const { ConnectMysql } = require('../Config/Connection')
 

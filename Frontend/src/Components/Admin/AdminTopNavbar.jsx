@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
@@ -10,7 +10,7 @@ import { faArrowRightFromBracket, faGear, faShoppingCart } from '@fortawesome/fr
 import ProfileImage from '../../Images/avatar/avatar-s.png'
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function AdminTopNavbar() {
+export default function AdminTopNavbar({ flag }) {
     const [name, setname] = useState("")
 
     const userLogin = useSelector((state) => state.userLogin)
@@ -19,19 +19,23 @@ export default function AdminTopNavbar() {
     const { success, userInfo } = userLogin
     const { validuserError } = validateuser
 
+    const SuccesMessage = useRef()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-
     useEffect(() => {
         if (userInfo) {
             setname(userInfo.name)
+        } else {
+            navigate('/login')
+        }
+
+        if (flag === true) {
             if (success) {
                 toast.success(`${userInfo.name} Login Success`, { theme: 'dark', position: 'top-center', draggable: true, pauseOnHover: true })
             }
-        } else {
-            navigate('/login')
+            flag = false
         }
 
         dispatch(UserValidation())
@@ -48,7 +52,7 @@ export default function AdminTopNavbar() {
 
     return (
         <>
-            <div id="main">
+            <div id="main" ref={SuccesMessage}>
                 <nav className="navbar navbar-header navbar-expand navbar-light">
                     <Link className="sidebar-toggler" href="#"><span className="navbar-toggler-icon"></span></Link>
                     <button className="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

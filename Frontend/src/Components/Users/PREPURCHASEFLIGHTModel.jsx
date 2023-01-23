@@ -6,6 +6,7 @@ import validator from 'validator'
 import { PreflightbookingAction } from '../../Redux/Action/UserAction'
 import { MagnifineLoader } from '../../Shared/Loaders/Loader'
 import ErrorAlert from '../../Shared/Alerts/CustomAlert'
+import { Link } from 'react-router-dom'
 
 export default function PREPURCHASEFLIGHTModel({ FlightDate, FlightName, FlingRute, Id }) {
     // , formState: { errors }
@@ -50,7 +51,7 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate, FlightName, FlingRu
 
     return (
         <>
-            <div className="modal fade" id="PrePurchaseFlightModel" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="PrePurchaseFlightModel" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -141,8 +142,9 @@ export default function PREPURCHASEFLIGHTModel({ FlightDate, FlightName, FlingRu
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="form-group d-flex gap-2">
-                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" {...register("termsPolicy", { required: true })} />
-                                                        <label htmlFor="vehicle1"> I Accept Privacy Policy & Terms </label>
+                                                        <input type="checkbox" id="termsPolicy" name="vehicle1" value="Bike" {...register("termsPolicy", { required: true })} />
+                                                        <label htmlFor="termsPolicy"> I Accept <Link to={'/privacypolicy'} target={'_blank'}> Privacy Policy & Terms </Link> </label>
+
                                                     </div>
                                                 </div>
                                             </div>

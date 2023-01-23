@@ -95,3 +95,16 @@ module.exports.PreBookingFlight = asyncHandler(async (req, res) => {
         }
     })
 })
+
+module.exports.GetFlightForGroupFlightBooking = asyncHandler(async (req, res) => {
+    const { ORIGIN, DESTINATION } = req.body
+    let currentDate = new Date()
+    await connection.query(`SELECT DISTINCT id, AIRLINE_LOGO,DEPARTURE_DATE,DEPARTURE_TIME,ARRIVAL_TIME,SEATS_AVAILABLE FROM FlightDetails WHERE FORM = '${ORIGIN}' AND SECTOR = '${DESTINATION}' AND DEPARTURE_DATE >= '${currentDate.toISOString().split('T')[0]}' `, (err, result) => {
+        if (err) console.log(err);
+        if (result.length > 0) {
+            res.status(200).json(result)
+        } else {
+            res.status(404).send(Constants.CommonQueryMessage.NO_FLIGHT_DETAILS(''))
+        }
+    })
+})

@@ -3,6 +3,7 @@ import { Container, Navbar, Image, Row, Col, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Logo from '../../Images/logo.png'
 import "../../Css/Header.css"
+import GroupFLightModal from './GroupFLightModal'
 
 export default function UserTopNavBar() {
     return (
@@ -36,12 +37,16 @@ export default function UserTopNavBar() {
                                     <li><Link to={'/brandstore'} className="nav_item"> Brand Story </Link></li>
                                     <li><Link to={'/corporatetours'} className="nav_item"> Corporate Tours </Link></li>
                                     <li><Link to={'/destinationfacts'} className="nav_item"> Destination Facts </Link></li>
+                                    <li>
+                                        <button type="button" className="nav_item" data-bs-toggle="modal" data-bs-target="#groupflightmodal" style={{"border": "none", "background": "none"}}> Group Flight Booking </button>
+                                    </li>
                                 </ul>
                             </Col>
                         </Row>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <GroupFLightModal/>
         </>
     )
 }

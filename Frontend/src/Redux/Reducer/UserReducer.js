@@ -1,4 +1,4 @@
-import { GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_FLIGHT_DETAILS_FAILS, GET_FLIGHT_DETAILS_REQUEST, GET_FLIGHT_DETAILS_SUCCESS, GET_WEEKLY_FLIGHT_DETAILS_FAILS, GET_WEEKLY_FLIGHT_DETAILS_REQUEST, GET_WEEKLY_FLIGHT_DETAILS_SUCCESS, PRE_FLIGHT_BOOKING_FAILS, PRE_FLIGHT_BOOKING_REQUEST, PRE_FLIGHT_BOOKING_SUCCESS } from "../Constants/UserConstance";
+import { FLIGHT_FOR_GROUP_FLIGHT_BOOKING_FAILS, FLIGHT_FOR_GROUP_FLIGHT_BOOKING_REQUEST, FLIGHT_FOR_GROUP_FLIGHT_BOOKING_SUCCESS, GET_ALL_AIRPORT_DETAILS_FAILS, GET_ALL_AIRPORT_DETAILS_REQUEST, GET_ALL_AIRPORT_DETAILS_SUCCESS, GET_FLIGHT_DETAILS_FAILS, GET_FLIGHT_DETAILS_REQUEST, GET_FLIGHT_DETAILS_SUCCESS, GET_WEEKLY_FLIGHT_DETAILS_FAILS, GET_WEEKLY_FLIGHT_DETAILS_REQUEST, GET_WEEKLY_FLIGHT_DETAILS_SUCCESS, PRE_FLIGHT_BOOKING_FAILS, PRE_FLIGHT_BOOKING_REQUEST, PRE_FLIGHT_BOOKING_SUCCESS } from "../Constants/UserConstance";
 
 export const GetAllAirportDetailsReducer = (state = { Allairport: [] }, action) => {
     switch (action.type) {
@@ -58,6 +58,22 @@ export const PreflightbookingReducer = (state = {}, action) => {
 
         case PRE_FLIGHT_BOOKING_FAILS:
             return { loading: false, preflightbookingerror: action.payload };
+
+        default:
+            return state;
+    }
+}
+
+export const GetGroupFlightDetailsReducer = (state = { flightDetails: [] }, action) => {
+    switch (action.type) {
+        case FLIGHT_FOR_GROUP_FLIGHT_BOOKING_REQUEST:
+            return { flightDetailsloading: true };
+
+        case FLIGHT_FOR_GROUP_FLIGHT_BOOKING_SUCCESS:
+            return { flightDetailsloading: false, flightDetails: action.payload };
+
+        case FLIGHT_FOR_GROUP_FLIGHT_BOOKING_FAILS:
+            return { flightDetailsloading: false, flightDetailserror: action.payload };
 
         default:
             return state;
