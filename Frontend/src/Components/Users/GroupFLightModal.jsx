@@ -86,7 +86,7 @@ export default function GroupFLightModal() {
                                         <label htmlFor="selectflight"> Select Flight </label>
                                         {
                                             flightDetailserror ? <ErrorAlert children={flightDetailserror} variant={"success"} /> : (
-                                                <select name="" id="selectflight" className="form-control" {...register('flightName', { required: true })}>
+                                                <select name="" id="selectflight" className="form-control" {...register('flightName')}>
                                                     {
                                                         (Array.isArray(flightDetails)) && flightDetails.map((flightDetails) => (
                                                             <option value={flightDetails.AIRLINE_LOGO} key={flightDetails.id}>{flightDetails.AIRLINE_LOGO}</option>
@@ -104,13 +104,24 @@ export default function GroupFLightModal() {
                                 <div className="col-6">
                                     <div className="form-group">
                                         <label htmlFor="">Name</label>
-                                        <input type="text" name="" placeholder="Name" className="form-control" {...register('group_name', { required: true })} />
+                                        {errors['group_name'] ? (
+                                            <input type="text" name="" placeholder="Name" className="form-control" style={{ "border": "1px solid rgb(220 ,53 ,69)" }} {...register('group_name', { required: true })} />
+                                        ) : (
+                                            <input type="text" name="" placeholder="Name" className="form-control" {...register('group_name', { required: true })} />
+
+                                        )}
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div className="form-group">
                                         <label htmlFor="">Email ID</label>
-                                        <input type="email" name="" placeholder="Email ID" className="form-control" {...register('group_emailid', { required: true })} />
+                                        {
+                                            errors['group_name'] ? (
+                                                <input type="email" name="" placeholder="Email ID" className="form-control" style={{ "border": "1px solid rgb(220 ,53 ,69)" }} {...register('group_emailid', { required: true })} />
+                                            ) : (
+                                                <input type="email" name="" placeholder="Email ID" className="form-control" {...register('group_emailid', { required: true })} />
+                                            )
+                                        }
                                     </div>
                                 </div>
 
@@ -182,11 +193,12 @@ export default function GroupFLightModal() {
                                 </div>
                             </div>
                             <button type='submit' hidden id='submitbutton'>Submit</button>
+                            <button type='reset' hidden id='resetbutton' onClick={clearAll}></button>
                         </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-secondary" onClick={(e) => { e.preventDefault(); document.getElementById('resetbutton').click(); }}>Reset</button>
+                        <button type="button" className="btn btn-primary" onClick={(e) => { e.preventDefault(); document.getElementById('submitbutton').click(); }}>Save Details</button>
                     </div>
                 </div>
             </div>
