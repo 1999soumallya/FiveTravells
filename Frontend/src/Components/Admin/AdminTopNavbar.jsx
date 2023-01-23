@@ -19,7 +19,7 @@ export default function AdminTopNavbar({ flag }) {
     const { success, userInfo } = userLogin
     const { validuserError } = validateuser
 
-    const SuccesMessage = useRef()
+    const SuccesMessage = useRef(flag)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -35,7 +35,6 @@ export default function AdminTopNavbar({ flag }) {
             if (success) {
                 toast.success(`${userInfo.name} Login Success`, { theme: 'dark', position: 'top-center', draggable: true, pauseOnHover: true })
             }
-            flag = false
         }
 
         dispatch(UserValidation())
@@ -43,7 +42,7 @@ export default function AdminTopNavbar({ flag }) {
             dispatch(UserLogout())
         }
 
-    }, [dispatch, navigate, success, userInfo, validuserError])
+    }, [dispatch, flag, navigate, success, userInfo, validuserError])
 
     const logoutHandaler = () => {
         dispatch(UserLogout())

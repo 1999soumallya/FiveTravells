@@ -26,7 +26,7 @@ export default function Login() {
             toast.error(error, { theme: 'dark', position: 'bottom-right', draggable: true, pauseOnHover: true })
         }
         if (userInfo) {
-            if (userInfo.userType === 'user') {
+            if (userInfo.userType === 'admin') {
                 navigate('/admin')
             }
         }
